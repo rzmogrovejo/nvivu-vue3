@@ -10,5 +10,5 @@ cd dist
 git init
 git add -A
 git commit -m 'deploy'
-git push -f git@github.com:rzmogrovejo/peruvian-tv-channels.git master:gh-pages
+git push -f git@github.com:rzmogrovejo/peruvian-tv-channels.git main:gh-pages
 cd -

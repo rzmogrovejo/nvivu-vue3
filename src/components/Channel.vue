@@ -3,12 +3,21 @@
 		<ul class="">
 			<li v-for="channel in channels" :key="channel">
 				<a :href="!channel.allowIframe ? channel.website : 'javascript:void(0)'"
-					:target="!channel.allowIframe ? '_blank' : '' ">
+					:target="!channel.allowIframe ? '_blank' : '' "
+					@click="toggleIframe(channel.website, channel.allowIframe)">
 					{{ channel.name }}
 				</a>	
 				<span v-if="!channel.allowIframe"> (Se abre en una nueva ventana)</span>
 			</li>
 		</ul>
+		<iframe 
+			v-if="showIframe"
+			width="100%"
+			height="700"
+			frameborder=0
+			allow="fullscreen"
+			:src="iframeUrl">
+		</iframe>
 	</div>
 </template>
 
@@ -16,10 +25,13 @@
 import { defineComponent } from 'vue';
 
 interface Channel {
-	name: string;
-	website: string;
-	number: any;
-	allowIframe: boolean;
+	"name": string;
+	"website": string;
+	"number": {
+		"national"?: string,
+		"movistar-hd"?: string
+	};
+	"allowIframe": boolean;
 }
 
 const rawChannels = [
@@ -87,12 +99,22 @@ export default defineComponent({
 	name: 'Channel',
 	data() {
 		return {
-			channels: channelsList
+			channels: channelsList,
+			showIframe: false,
+			iframeUrl: ""
 		}
 	},
 	mounted() {		
 		//console.log(this.channels);
 	},
+	methods: {
+		toggleIframe(iframeUrl: string, allowIframe: boolean) {
+			if (allowIframe) {
+				this.showIframe = true;
+				this.iframeUrl = iframeUrl;
+			}
+		}
+	}
 })
 
 </script>

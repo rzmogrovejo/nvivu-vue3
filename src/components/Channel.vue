@@ -9,6 +9,8 @@
 				</a>	
 				<span v-if="!channel.iframe.allow"> (Se abre en una nueva ventana)</span>
 			</li>
+			<br/>
+			<li><a href="javascript:void(0)" @click="offIframe()">Apagar</a></li>
 		</ul>
 		<div v-if="showIframe" 
 			style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
@@ -136,6 +138,9 @@ export default defineComponent({
 			if (channel.iframe.allow) {
 				this.iframeUrl = 'url' in channel.iframe ? channel.iframe.url! : channel.url;
 			}
+		},
+		offIframe(){
+			this.showIframe = false;
 		}
 	}
 })

@@ -68,6 +68,9 @@ const rawChannels = [
 		},
 		"stream": {
 			"allow": false,
+			"type": "video",
+			//"url": "https://live-normal-movistar-hls.latina.pe/egress/bhandler/cialatina/live/manifest.m3u8?nva=1628581848&ttl=432000&ip=190.237.122.66&hash=0a6a1a7776bda9e132d2a",
+			"url": "https://live-normal-movistar-hls.latina.pe/egress/bhandler/cialatina/live/manifest.m3u8?nva=1628581848&ttl=432000&ip=190.237.122.66&hash=0a6a1a7776bda9e132d2a"
 		}
 	},
 	{
@@ -78,7 +81,10 @@ const rawChannels = [
 			"movistar-hd": "704"
 		},
 		"stream": {
-			"allow": false
+			"allow": false,
+			"type": "iframe",
+			"url": "https://mdstrm.com/live-stream/5c51e67df4d3c6698b02bbee?jsapi=true&autoplay=true&player=5b8ea6f89ff52d0770a144c7&ref=https%3A%2F%2Ftvgo.americatv.com.pe%2F&access_token=f8138FWoO5LuzxSJxou0ENsqzVFCIG6k1k9cewp27m6qnQVZFHLwfLrnXAB8PULCsM3hPowUf9i",
+			//"url": "https://mdstrm.com/live-stream-playlist/5c51e67df4d3c6698b02bbee.m3u8?uid=QC9pBD53YBxmKJk2Mxqk8V911Q3LEfGn&sid=TeVxC2UEKe1lctDnnCv2ED3vYrduVHgm&pid=9nBW6kZsmG8QsUVlPPfdFnUk4MlW4Jis&an=screen&at=web-app&av=v5.2.134&ref=https%3A%2F%2Ftvgo.americatv.com.pe%2F&res=803x452&without_cookies=false&dnt=true&access_token=f8138FWoO5LuzxSJxou0ENsqzVFCIG6k1k9cewp27m6qnQVZFHLwfLrnXAB8PULCsM3hPowUf9i"
 		}
 	},
 	{
@@ -103,7 +109,8 @@ const rawChannels = [
 		},
 		"stream": {
 			"allow": false,
-			"url": "https://iblups.com/e_tvperuHD"
+			"type": "video",
+			"url": "https://cdnh71.iblups.com/hls/R9WtilpKKB.m3u8"
 		}
 	},
 	{
@@ -114,7 +121,7 @@ const rawChannels = [
 			"movistar-hd": "709"
 		},
 		"stream": {
-			"allow": true,
+			"allow": false,
 			"type": "video",
 			"url": "https://pe-atv-atv-live.ned.media/atv/smil:atv.smil/playlist.m3u8?iut=",
 			//"url": "https://pe-atv-atv-live.ned.media/atv/smil:atv.smil/playlist.m3u8?iut=eyJwYXJhbXMiOnsiZXhwIjoxNjIwODM5MDc3LCJzZXNzaW9uIjoiMTkwLjIzNy4xMjIuNjYiLCJ3aGl0ZWxpc3QiOlsiMTkwLjIzNy4xMjIuNjYiXX0sInNpZ25hdHVyZSI6ImMzZjMyZWYwNWZkYjMyMDhjNzE1OThkZDAyMmQ2NGUyNDlkNWI3ZDUifQ=="

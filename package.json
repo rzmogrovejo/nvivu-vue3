@@ -6,10 +6,12 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-	"deploy": "sh deploy.sh"
+    "deploy": "sh deploy.sh"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "hls.js": "^1.0.3",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0"
   },

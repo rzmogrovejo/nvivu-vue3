@@ -2,19 +2,25 @@
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/> -->
   <h1>Canales TV Peruana en vivo</h1>
-  <Channel />
+  <ChannelsList :channels="channels" />
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import HelloWorld from './components/HelloWorld.vue';
-import Channel from './components/Channel.vue';
+import ChannelsList from './components/ChannelsList.vue';
+import rawChannels from './data/rawChannels';
 
 @Options({
-  components: {
-    HelloWorld,
-	Channel
-  },
+	data() {
+		return {
+			channels: rawChannels
+		}
+	},
+	components: {
+		HelloWorld,
+		ChannelsList
+	},
 })
 export default class App extends Vue {}
 </script>

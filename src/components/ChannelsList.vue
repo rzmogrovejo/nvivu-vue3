@@ -13,7 +13,8 @@
 			<li><a href="javascript:void(0)" @click="offStream()">Apagar</a></li>
 		</ul>
 		<div v-if="stream.getToggle()" 
-			style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+			style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;"
+			:class="{ 'backdrop': stream.getToggle() }">
 			<div v-html="stream.getHtml()"></div>
 		</div>
 	</div>
@@ -31,7 +32,7 @@ export default defineComponent({
 	},
 	data() {
 		return {
-			stream: new Stream()
+			stream: new Stream(),
 		}
 	},
 	mounted() {
@@ -59,6 +60,9 @@ export default defineComponent({
 }
 #video::-webkit-media-controls-time-remaining-display {
 	display: none;
+}
+.backdrop {
+	background-color: black;
 }
 
 </style>

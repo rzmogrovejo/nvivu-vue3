@@ -33,6 +33,8 @@ export default class Stream {
 		let condition = channel.stream.allow && 'url' in channel.stream;
 		this.source = condition ? channel.stream.url! : channel.url;
 
+		this.html = "";
+
 		if (channel.name == 'ATV') {
 			// i'm going to fetch the script, run it and then get the token
 			axios.get('https://url-scrapper-v1.herokuapp.com/?url=' + channel.url).then((response) => {

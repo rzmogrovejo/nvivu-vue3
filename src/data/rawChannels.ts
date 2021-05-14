@@ -56,9 +56,9 @@ export default [
 		},
 		"stream": {
 			"allow": true,
-			"type": "iframe",
-			"url": "https://www.atv.pe/envivo-atv"
-			//"url": "https://pe-atv-atv-live.ned.media/atv/smil:atv.smil/playlist.m3u8?iut=",
+			"type": "video",
+			//"url": "https://www.atv.pe/envivo-atv"
+			"url": "https://pe-atv-atv-live.ned.media/atv/smil:atv.smil/playlist.m3u8?iut=",
 		}
 	},
 	{

@@ -52,9 +52,14 @@ export default class Stream {
 	
 				hashScript = hashScript.replace(varResult, "return ");
 	
-				const hashScriptFunction = new Function (hashScript);
+				const hashScriptValue = (new Function (hashScript))();
+
+				if (hashScriptValue == undefined) {
+					this.html = this.htmlTags(channel.url)['iframe'].trim();
+					return;
+				}
 	
-				axios.get("https://past-server.nedp.io/token/pe-atv-atv?rsk=" +  hashScriptFunction()).then((response) => {
+				axios.get("https://past-server.nedp.io/token/pe-atv-atv?rsk=" +  hashScriptValue).then((response) => {
 					this.source = this.source + response.data.token
 					console.log(this.source);
 

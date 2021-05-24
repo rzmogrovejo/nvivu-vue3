@@ -40,7 +40,7 @@ export default defineComponent({
 	},
 	methods: {
 		toggleStream(channel: Channel) {
-			this.stream.resolveSourceAndHtml(channel);
+			this.stream.resolveStream(channel);
 			this.stream.setToggle(channel.stream.allow);
 		},
 		offStream() {

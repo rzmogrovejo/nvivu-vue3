@@ -27,7 +27,7 @@ export default class Stream {
 		return this.html;
 	}
 
-	private emptyStream() {
+	private emptyHtml() {
 		this.html = "";
 	}
 
@@ -43,7 +43,7 @@ export default class Stream {
 
 	public resolveStream(channel: Channel) {
 
-		this.emptyStream();
+		this.emptyHtml();
 
 		const slugToCamel = snakeToCamel(channel.slug);
 

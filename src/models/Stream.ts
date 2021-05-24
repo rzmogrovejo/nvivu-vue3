@@ -7,13 +7,10 @@ import snakeToCamel from '../utils/snakeToCamel';
 interface HtmlTags { 'iframe': string; 'video': string }
 
 export default class Stream {
-	private source: string;
 	private html: string;
 	private toggle: boolean;
-	private channel?: Channel;
 
 	constructor() {
-		this.source = "";
 		this.html = "";
 		this.toggle = false;
 	}
@@ -31,8 +28,17 @@ export default class Stream {
 	}
 
 	private emptyStream() {
-		this.source = "";
 		this.html = "";
+	}
+
+	private resolveSource(channel: Channel) {
+		const condition = channel.stream.allow && 'url' in channel.stream;
+		return condition ? channel.stream.url! : channel.url;
+	}
+
+	private resolveHtml(channel: Channel, source: string) {
+		const condition = 'type' in channel.stream;
+		this.html = condition ? this.htmlTags(source)[channel.stream.type as keyof HtmlTags].trim() : '';
 	}
 
 	public resolveStream(channel: Channel) {
@@ -43,20 +49,15 @@ export default class Stream {
 
 		if (typeof (this as any)[slugToCamel] === "function") {
 			(this as any)[slugToCamel](channel);
-		} else {
-			let condition = channel.stream.allow && 'url' in channel.stream;
-			this.source = condition ? channel.stream.url! : channel.url;
-
-			condition = 'type' in channel.stream;
-			this.html = condition ? this.htmlTags(this.source)[channel.stream.type as keyof HtmlTags].trim() : '';
+			return;
 		}
+
+		const source = this.resolveSource(channel);
+		this.resolveHtml(channel, source);
 	}
 
 	private async atv(channel: Channel) {
-		let condition = channel.stream.allow && 'url' in channel.stream;
-		this.source = condition ? channel.stream.url! : channel.url;
-
-		// i'm going to fetch the script, run it and then get the token
+		// i'm going to fetch the script, run it and get the hash
 		const html = await axios
 			.get('https://url-scrapper-v1.herokuapp.com/?url=' + channel.url)
 			.then(response => response.data.html);
@@ -75,28 +76,28 @@ export default class Stream {
 
 		const hashScriptValue = (new Function (hashScript))();
 
+		// if the script returns undefined then a fallback should be applied
 		if (hashScriptValue == undefined) {
 			this.html = this.htmlTags(channel.url)['iframe'].trim();
 			return;
 		}
 
+		// if the script returns the hash then request the token
 		const token = await axios
 			.get("https://past-server.nedp.io/token/pe-atv-atv?rsk=" + hashScriptValue)
 			.then(response => response.data.token);
 
-		this.source = this.source + token;
-
-		condition = 'type' in channel.stream;
-		this.html = condition ? this.htmlTags(this.source)[channel.stream.type as keyof HtmlTags].trim() : '';
+		const source = this.resolveSource(channel);
+		this.resolveHtml(channel, source + token);		
 
 		nextTick(() => {
 			const video: any = document.getElementById("video");
 			if (Hls.isSupported()) {
 				const hls = new Hls();
-				hls.loadSource(this.source);
+				hls.loadSource(source);
 				hls.attachMedia(video);
 			} else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-				video.src = this.source;
+				video.src = source;
 			}
 		})	
 	}

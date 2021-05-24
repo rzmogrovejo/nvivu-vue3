@@ -1,5 +1,6 @@
 export default interface Channel {
 	"name": string;
+	"slug": string;
 	"url": string;
 	"number": {
 		"national"?: string,

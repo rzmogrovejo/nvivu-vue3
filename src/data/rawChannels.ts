@@ -1,6 +1,7 @@
 export default [
 	{
 		"name": "Latina",
+		"slug": "latina",
 		"url": "https://www.latina.pe/tvenvivo",
 		"number": {
 			"national": "2",
@@ -12,6 +13,7 @@ export default [
 	},
 	{
 		"name": "America TV",
+		"slug": "america-tv",
 		"url": "https://tvgo.americatv.com.pe/",
 		"number": {
 			"national": "4",
@@ -25,6 +27,7 @@ export default [
 	},
 	{
 		"name": "Panamericana",
+		"slug": "panamericana",
 		"url": "https://panamericana.pe/tvenvivo",
 		"number": {
 			"national": "5",
@@ -38,6 +41,7 @@ export default [
 	},
 	{
 		"name": "TV Perú",
+		"slug": "tv-peru",
 		"url": "https://www.tvperu.gob.pe/play",
 		"number": {
 			"national": "7",
@@ -49,6 +53,7 @@ export default [
 	},
 	{
 		"name": "ATV",
+		"slug": "atv",
 		"url": "https://www.atv.pe/envivo-atv",
 		"number": {
 			"national": "9",
@@ -63,6 +68,7 @@ export default [
 	},
 	{
 		"name": "Willax",
+		"slug": "willax",
 		"url": "https://willax.tv/en-vivo/",
 		"number": {
 			"national": "16",

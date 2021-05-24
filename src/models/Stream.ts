@@ -87,8 +87,8 @@ export default class Stream {
 			.get("https://past-server.nedp.io/token/pe-atv-atv?rsk=" + hashScriptValue)
 			.then(response => response.data.token);
 
-		const source = this.resolveSource(channel);
-		this.resolveHtml(channel, source + token);		
+		const source = this.resolveSource(channel) + token;
+		this.resolveHtml(channel, source);		
 
 		nextTick(() => {
 			const video: any = document.getElementById("video");

@@ -2,6 +2,7 @@ import { nextTick } from '@vue/runtime-core';
 import axios from 'axios';
 import Hls from 'hls.js';
 import Channel from '../contracts/Channel';
+import snakeToCamel from '../utils/snakeToCamel';
 
 interface HtmlTags { 'iframe': string; 'video': string }
 
@@ -29,59 +30,74 @@ export default class Stream {
 		return this.html;
 	}
 
-	public resolveSourceAndHtml(channel: Channel) {
-		let condition = channel.stream.allow && 'url' in channel.stream;
-		this.source = condition ? channel.stream.url! : channel.url;
-
+	private emptyStream() {
+		this.source = "";
 		this.html = "";
+	}
 
-		if (channel.name == 'ATV') {
-			// i'm going to fetch the script, run it and then get the token
-			axios.get('https://url-scrapper-v1.herokuapp.com/?url=' + channel.url).then((response) => {
-				const html = response.data.html;
-	
-				const startHashScript = html.indexOf('_0x5d50') - 4; // 56852 - 4
-				const endHashScript = html.indexOf('past-server') - 27; // 58007 - 27
-	
-				let hashScript = html.substring(startHashScript, endHashScript);
-	
-				const nullPos = hashScript.indexOf('null') + 7;
-				const equalPos = hashScript.indexOf('=', nullPos) + 1;
-	
-				const varResult = hashScript.substring(nullPos,equalPos);
-	
-				hashScript = hashScript.replace(varResult, "return ");
-	
-				const hashScriptValue = (new Function (hashScript))();
+	public resolveStream(channel: Channel) {
 
-				if (hashScriptValue == undefined) {
-					this.html = this.htmlTags(channel.url)['iframe'].trim();
-					return;
-				}
-	
-				axios.get("https://past-server.nedp.io/token/pe-atv-atv?rsk=" +  hashScriptValue).then((response) => {
-					this.source = this.source + response.data.token
-					console.log(this.source);
+		this.emptyStream();
 
-					condition = 'type' in channel.stream;
-					this.html = condition ? this.htmlTags(this.source)[channel.stream.type as keyof HtmlTags].trim() : '';
+		const slugToCamel = snakeToCamel(channel.slug);
 
-					nextTick(() => {
-						const video: any = document.getElementById("video");
-						if (Hls.isSupported()) {
-							const hls = new Hls();
-							hls.loadSource(this.source);
-							hls.attachMedia(video);
-						} else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-							video.src = this.source;
-						}
-					})
-				});	
-			})
+		if (typeof (this as any)[slugToCamel] === "function") {
+			(this as any)[slugToCamel](channel);
 		} else {
+			let condition = channel.stream.allow && 'url' in channel.stream;
+			this.source = condition ? channel.stream.url! : channel.url;
+
 			condition = 'type' in channel.stream;
 			this.html = condition ? this.htmlTags(this.source)[channel.stream.type as keyof HtmlTags].trim() : '';
 		}
+	}
+
+	private atv(channel: Channel) {
+		let condition = channel.stream.allow && 'url' in channel.stream;
+		this.source = condition ? channel.stream.url! : channel.url;
+
+		// i'm going to fetch the script, run it and then get the token
+		axios.get('https://url-scrapper-v1.herokuapp.com/?url=' + channel.url).then((response) => {
+			const html = response.data.html;
+
+			const startHashScript = html.indexOf('_0x5d50') - 4; // 56852 - 4
+			const endHashScript = html.indexOf('past-server') - 27; // 58007 - 27
+
+			let hashScript = html.substring(startHashScript, endHashScript);
+
+			const nullPos = hashScript.indexOf('null') + 7;
+			const equalPos = hashScript.indexOf('=', nullPos) + 1;
+
+			const varResult = hashScript.substring(nullPos,equalPos);
+
+			hashScript = hashScript.replace(varResult, "return ");
+
+			const hashScriptValue = (new Function (hashScript))();
+
+			if (hashScriptValue == undefined) {
+				this.html = this.htmlTags(channel.url)['iframe'].trim();
+				return;
+			}
+
+			axios.get("https://past-server.nedp.io/token/pe-atv-atv?rsk=" +  hashScriptValue).then((response) => {
+				this.source = this.source + response.data.token
+				console.log(this.source);
+
+				condition = 'type' in channel.stream;
+				this.html = condition ? this.htmlTags(this.source)[channel.stream.type as keyof HtmlTags].trim() : '';
+
+				nextTick(() => {
+					const video: any = document.getElementById("video");
+					if (Hls.isSupported()) {
+						const hls = new Hls();
+						hls.loadSource(this.source);
+						hls.attachMedia(video);
+					} else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+						video.src = this.source;
+					}
+				})
+			});	
+		})		
 	}
 
 	private htmlTags(url?: string): HtmlTags {

@@ -67,6 +67,21 @@ export default [
 		}
 	},
 	{
+		"name": "ATV Más",
+		"slug": "atv-mas",
+		"url": "https://www.atv.pe/envivo-atvmas",
+		"number": {
+			"national": "21",
+			"movistar-hd": "776"
+		},
+		"stream": {
+			"allow": true,
+			"type": "video",
+			//"url": "https://www.atv.pe/envivo-atv"
+			"url": "https://pe-atv-atv-mas-live.ned.media/atv/smil:atv-mas.smil/playlist.m3u8?iut=",
+		}		
+	},
+	{
 		"name": "Willax",
 		"slug": "willax",
 		"url": "https://willax.tv/en-vivo/",

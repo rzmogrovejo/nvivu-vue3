@@ -102,6 +102,52 @@ export default class Stream {
 		})	
 	}
 
+	private async atvMas(channel: Channel) {
+		// i'm going to fetch the script, run it and get the hash
+		const html = await axios
+			.get('https://url-scrapper-v1.herokuapp.com/?url=' + channel.url)
+			.then(response => response.data.html);
+		
+		const startHashScript = html.indexOf('_0x5d50') - 4; // 56852 - 4
+		const endHashScript = html.indexOf('past-server') - 27; // 58007 - 27
+
+		let hashScript = html.substring(startHashScript, endHashScript);
+
+		const nullPos = hashScript.indexOf('null') + 7;
+		const equalPos = hashScript.indexOf('=', nullPos) + 1;
+
+		const varResult = hashScript.substring(nullPos,equalPos);
+
+		hashScript = hashScript.replace(varResult, "return ");
+
+		const hashScriptValue = (new Function (hashScript))();
+
+		// if the script returns undefined then a fallback should be applied
+		if (hashScriptValue == undefined) {
+			this.html = this.htmlTags(channel.url)['iframe'].trim();
+			return;
+		}
+
+		// if the script returns the hash then request the token
+		const token = await axios
+			.get("https://past-server.nedp.io/token/pe-atv-atv-mas?rsk=" + hashScriptValue)
+			.then(response => response.data.token);
+
+		const source = this.resolveSource(channel) + token;
+		this.resolveHtml(channel, source);		
+
+		nextTick(() => {
+			const video: any = document.getElementById("video");
+			if (Hls.isSupported()) {
+				const hls = new Hls();
+				hls.loadSource(source);
+				hls.attachMedia(video);
+			} else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+				video.src = source;
+			}
+		})	
+	}
+
 	private htmlTags(url?: string): HtmlTags {
 		return {
 			'iframe': `

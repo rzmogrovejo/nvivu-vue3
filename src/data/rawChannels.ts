@@ -20,7 +20,7 @@ export default [
 			"movistar-hd": "704"
 		},
 		"stream": {
-			"allow": true,
+			"allow": false,
 			"type": "iframe",
 			"url": "https://tvgo.americatv.com.pe/"
 		}

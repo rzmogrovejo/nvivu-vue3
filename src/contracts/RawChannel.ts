@@ -1,4 +1,4 @@
-export default interface Channel {
+export default interface RawChannel {
 	"name": string;
 	"slug": string;
 	"url": string;

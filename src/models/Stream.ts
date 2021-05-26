@@ -6,19 +6,9 @@ import Channel from './Channel';
 
 export default class Stream {
 	private html: string;
-	private toggle: boolean;
 
 	constructor() {
 		this.html = '';
-		this.toggle = false;
-	}
-
-	public setToggle(toggle: boolean) {
-		this.toggle = toggle;
-	}
-
-	public getToggle() {
-		return this.toggle;
 	}
 
 	public getHtml() {
@@ -29,13 +19,8 @@ export default class Stream {
 		this.html = '';
 	}
 
-	public setHtmlContent(contentType: string, source?: string) {
+	private setHtmlContent(contentType: string, source?: string) {
 		this.html = (this.htmlContent(source) as any)[contentType].trim();
-	}
-
-	private resolveSource(channel: RawChannel) {
-		const condition = channel.stream.allow && 'url' in channel.stream;
-		return condition ? channel.stream.url! : channel.url;
 	}
 
 	private resolveHtml(channel: Channel, source?: string) {		
@@ -69,7 +54,6 @@ export default class Stream {
 		}
 
 		this.resolveHtml(channel);
-		this.setToggle(channel.content().enable())
 	}
 
 	private async atv(channel: Channel) {

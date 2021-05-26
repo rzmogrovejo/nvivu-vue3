@@ -2,7 +2,7 @@ import Model from "./Model";
 
 export default class Content extends Model {
 	public enable() {
-		return this.get('allow');
+		return this.get('enable');
 	}
 
 	public type() {
@@ -10,6 +10,6 @@ export default class Content extends Model {
 	}
 	
 	public source() {
-		return this.get('url');
+		return this.get('source');
 	}
 }

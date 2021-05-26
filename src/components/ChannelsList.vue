@@ -43,6 +43,7 @@ export default defineComponent({
 			this.showStream = true;
 		},
 		offStream() {
+			this.stream.emptyHtml();
 			this.showStream = false;
 		}
 	}

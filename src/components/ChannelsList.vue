@@ -10,9 +10,9 @@
 			<br/>
 			<li><a href="javascript:void(0)" @click="offStream()">Apagar</a></li>
 		</ul>
-		<div v-if="stream.getToggle()" 
+		<div v-if="showStream" 
 			style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;"
-			:class="{ 'backdrop': stream.getToggle() }">
+			:class="{ 'backdrop': showStream }">
 			<div v-html="stream.getHtml()"></div>
 		</div>
 	</div>
@@ -31,6 +31,7 @@ export default defineComponent({
 	data() {
 		return {
 			stream: new Stream(),
+			showStream: false
 		}
 	},
 	mounted() {
@@ -39,9 +40,10 @@ export default defineComponent({
 	methods: {
 		toggleStream(rawChannel: RawChannel) {
 			this.stream.resolveStream(rawChannel);
+			this.showStream = true;
 		},
 		offStream() {
-			this.stream.setToggle(false);
+			this.showStream = false;
 		}
 	}
 })

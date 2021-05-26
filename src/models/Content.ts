@@ -12,4 +12,8 @@ export default class Content extends Model {
 	public source() {
 		return this.get('source');
 	}
+
+	public isVideoType() {
+		return this.type() === 'video';
+	}
 }

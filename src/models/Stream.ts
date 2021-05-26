@@ -39,7 +39,7 @@ export default class Stream {
 	}
 
 	private resolveHtml(channel: Channel, source?: string) {		
-		if (!channel.content().allow()) {
+		if (!channel.content().enable()) {
 			this.emptyHtml();
 			return;
 		}
@@ -62,14 +62,14 @@ export default class Stream {
 			return;
 		}
 
-		if (!channel.content().allow()) {
+		if (!channel.content().enable()) {
 			this.setHtmlContent('blank', channel.source())
 			window.open(channel.source(), '_blank');
 			return;
 		}
 
 		this.resolveHtml(channel);
-		this.setToggle(channel.content().allow())
+		this.setToggle(channel.content().enable())
 	}
 
 	private async atv(channel: Channel) {

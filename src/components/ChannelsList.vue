@@ -2,12 +2,10 @@
 	<div>
 		<ul class="">
 			<li v-for="channel in channels" :key="channel">
-				<a :href="!channel.stream.allow ? channel.url : 'javascript:void(0)'"
-					:target="!channel.stream.allow ? '_blank' : '' "
+				<a href="javascript:void(0)"
 					@click="toggleStream(channel)">
 					{{ channel.name }}
-				</a>	
-				<span v-if="!channel.stream.allow"> (Se abre en una nueva ventana)</span>
+				</a>
 			</li>
 			<br/>
 			<li><a href="javascript:void(0)" @click="offStream()">Apagar</a></li>
@@ -23,7 +21,7 @@
 <script lang = "ts">
 import { defineComponent } from 'vue';
 import Stream from '../models/Stream';
-import Channel from '../contracts/Channel';
+import RawChannel from '../contracts/RawChannel';
 
 export default defineComponent({
 	name: 'ChannelsList',
@@ -39,9 +37,8 @@ export default defineComponent({
 
 	},
 	methods: {
-		toggleStream(channel: Channel) {
-			this.stream.resolveStream(channel);
-			this.stream.setToggle(channel.stream.allow);
+		toggleStream(rawChannel: RawChannel) {
+			this.stream.resolveStream(rawChannel);
 		},
 		offStream() {
 			this.stream.setToggle(false);

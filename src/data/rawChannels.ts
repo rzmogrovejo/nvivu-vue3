@@ -95,4 +95,46 @@ export default [
 			"source": "https://www.dailymotion.com/embed/video/x7x4dgx?autoplay=1"
 		}
 	},
+	{
+		"name": "RT",
+		"slug": "rt",
+		"source": "https://actualidad.rt.com/en_vivo",
+		"number": {
+			"national": "xx",
+			"movistar-hd": "xx"
+		},
+		"content": {
+			"enable": true,
+			"type": "iframe",
+			"source": "https://www.youtube.com/embed/9DXGrOU5wKQ?autoplay=1"
+		}
+	},
+	{
+		"name": "DW",
+		"slug": "dw",
+		"source": "https://www.dw.com/es/multimedia/tv-en-vivo/s-100837",
+		"number": {
+			"national": "xx",
+			"movistar-hd": "xx"
+		},
+		"content": {
+			"enable": true,
+			"type": "video",
+			"source": "https://dwstream3-lh.akamaihd.net/i/dwstream3_live@124409/master.m3u8"
+		}
+	},
+	{
+		"name": "Televisa Noticias",
+		"slug": "televisa-noticias",
+		"source": "https://noticieros.televisa.com/noticias-vivo-forotv/",
+		"number": {
+			"national": "xx",
+			"movistar-hd": "xx"
+		},
+		"content": {
+			"enable": true,
+			"type": "video",
+			"source": "https://stnothds-lh.akamaihd.net/i/sslf0r0tvnus_1@109755/master.m3u8"
+		}
+	}	
 ];

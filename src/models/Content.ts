@@ -1,7 +1,7 @@
 import Model from "./Model";
 
 export default class Content extends Model {
-	public allow() {
+	public enable() {
 		return this.get('allow');
 	}
 
@@ -11,9 +11,5 @@ export default class Content extends Model {
 	
 	public source() {
 		return this.get('url');
-	}
-
-	public setSource(value: string) {
-		this.set('url', value);
 	}
 }

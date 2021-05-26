@@ -96,6 +96,34 @@ export default [
 		}
 	},
 	{
+		"name": "Éxitosa Noticias",
+		"slug": "exitosa-noticias",
+		"source": "https://exitosanoticias.pe/v1/tvenvivo/",
+		"number": {
+			"national": "xx",
+			"movistar-hd": "xx"
+		},
+		"content": {
+			"enable": true,
+			"type": "video",
+			"source": "https://cu.onliv3.com/livevd1/user2_hd720/index.m3u8"
+		}
+	},
+	{
+		"name": "Canal IPe",
+		"slug": "canal-ipe",
+		"source": "https://www.canalipe.tv/streaming",
+		"number": {
+			"national": "xx",
+			"movistar-hd": "xx"
+		},
+		"content": {
+			"enable": true,
+			"type": "video",
+			"source": "https://cdnh4.iblups.com/hls/OVJNKV4pSr.m3u8"
+		}
+	},
+	{
 		"name": "RT",
 		"slug": "rt",
 		"source": "https://actualidad.rt.com/en_vivo",

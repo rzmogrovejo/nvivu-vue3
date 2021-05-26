@@ -6,32 +6,50 @@ import Channel from './Channel';
 
 export default class Stream {
 	private html: string;
+	private hls: Hls;
 
 	constructor() {
 		this.html = '';
+		this.hls = new Hls();
 	}
 
 	public getHtml() {
 		return this.html;
 	}
 
-	private emptyHtml() {
+	public emptyHtml() {
 		this.html = '';
+		this.hls.destroy();
 	}
 
 	private setHtmlContent(contentType: string, source?: string) {
 		this.html = (this.htmlContent(source) as any)[contentType].trim();
 	}
 
-	private resolveHtml(channel: Channel, source?: string) {		
-		if (!channel.content().enable()) {
-			this.emptyHtml();
-			return;
-		}
-
+	private resolveHtml(channel: Channel, source?: string) {
 		source = source || channel.content().source();
-
 		this.setHtmlContent(channel.content().type(), source);
+
+		if (channel.content().isVideoType()) {
+			setTimeout(() => {
+				const video: any = document.getElementById("video");
+				if (Hls.isSupported()) {
+					console.log(source);
+					const myHls = this.hls = new Hls();
+					myHls.attachMedia(video);
+					myHls.on(Hls.Events.MEDIA_ATTACHED, () => {
+						console.log("video and hls.js are now bound together !");
+						myHls.loadSource(source!);
+						myHls.on(Hls.Events.MANIFEST_PARSED, (event: any, data: any) => {
+							console.log("manifest loaded, found " + data.levels.length + " quality level");
+							video.play();
+						});
+					});
+				} else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+					video.src = source;
+				}
+			}, 4000)
+		}
 	}
 
 	public resolveStream(rawChannel: RawChannel) {
@@ -99,18 +117,7 @@ export default class Stream {
 			.then(response => response.data.token);
 
 		const source = channel.content().source() + token;
-		this.resolveHtml(channel, source);		
-
-		nextTick(() => {
-			const video: any = document.getElementById("video");
-			if (Hls.isSupported()) {
-				const hls = new Hls();
-				hls.loadSource(source);
-				hls.attachMedia(video);
-			} else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-				video.src = source;
-			}
-		});
+		this.resolveHtml(channel, source);
 	}
 
 	private htmlContent(source?: string) {
@@ -125,7 +132,7 @@ export default class Stream {
 					width="100%" 
 					height="100%"
 					allowfullscreen 
-					allow="autoplay">
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
 				</iframe>
 			`,
 			'video': `
@@ -144,7 +151,8 @@ export default class Stream {
     					position: absolute;
     					top: 50%;
     					left: 50%;
-    					transform: translate(-50%, -50%);">
+    					transform: translate(-50%, -50%);
+						text-align: center;">
 					Transmisión en un nueva ventana
 				</div>
 			`,
@@ -156,7 +164,8 @@ export default class Stream {
     					position: absolute;
     					top: 50%;
     					left: 50%;
-    					transform: translate(-50%, -50%);">
+    					transform: translate(-50%, -50%);
+						text-align: center;">
 					Cargando...
 				</div>
 			`

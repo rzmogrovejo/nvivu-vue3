@@ -9,7 +9,7 @@ export default class Channel extends Model {
 	}
 
 	public source() {
-		return this.get('url');
+		return this.get('source');
 	}
 
 	public name() {
@@ -17,7 +17,7 @@ export default class Channel extends Model {
 	}
 
 	public content() {
-		return new Content(this.get('stream'));
+		return new Content(this.get('content'));
 	}
 
 	public slugInCamel(): string {

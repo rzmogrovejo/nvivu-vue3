@@ -133,8 +133,9 @@ export default [
 		},
 		"content": {
 			"enable": true,
-			"type": "iframe",
-			"source": "https://www.youtube.com/embed/9DXGrOU5wKQ?autoplay=1"
+			"type": "video",
+			//"source": "https://www.youtube.com/embed/9DXGrOU5wKQ?autoplay=1"
+			"source": "https://rt-esp.secure.footprint.net/1102_2500Kb.m3u8"
 		}
 	},
 	{

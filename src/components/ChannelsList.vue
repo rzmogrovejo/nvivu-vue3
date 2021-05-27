@@ -11,8 +11,30 @@
 			<li><a href="javascript:void(0)" @click="offStream()">Apagar</a></li>
 		</ul>
 		<div v-if="showStream" 
-			style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;"
+			style="
+				overflow:hidden;
+				position: absolute;
+				top: 0px;
+				right: 0px;
+				bottom: 0px;
+				left: 0px;"
 			:class="{ 'backdrop': showStream }">
+			<div @click="offStream()"
+				style="
+					right: 10px;
+					top: 60px;
+					left: auto;
+					opacity: 0.7;
+					position: absolute;
+					background: black;
+					color: white;
+					border-radius: 5px;
+					padding: 5px;
+					margin: 10px 10px 10px 15px;
+					cursor: pointer;
+					z-index: 9999999;">
+				Volver
+			</div>
 			<div v-html="stream.getHtml()"></div>
 		</div>
 	</div>

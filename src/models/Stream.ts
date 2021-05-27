@@ -144,7 +144,7 @@ export default class Stream {
 					style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"
 					autoplay
 					controls>
-				</video>			
+				</video>
 			`,
 			'blank': `
 				<div

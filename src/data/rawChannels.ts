@@ -8,7 +8,9 @@ export default [
 			"movistar-hd": "702"
 		},
 		"content": {
-			"enable": false
+			"enable": true,
+			"type": "video",
+			"source": "https://live-latina-mdstrm.secure.footprint.net/live-stream-mp/d1aden84nxx8u4/3330943a0248407faa8c6f5f5c874fa4/5ce7109c7398b977dc0744cd/index_1.m3u8"
 		}
 	},
 	{

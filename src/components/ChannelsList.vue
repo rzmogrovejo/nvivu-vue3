@@ -12,8 +12,8 @@
 		</ul>
 		<div v-if="showStream" 
 			style="
-				overflow:hidden;
-				position: absolute;
+				overflow: hidden;
+				position: fixed;
 				top: 0px;
 				right: 0px;
 				bottom: 0px;
@@ -72,10 +72,12 @@ export default defineComponent({
 		toggleStream(rawChannel: RawChannel) {
 			this.stream.resolveStream(rawChannel);
 			this.showStream = true;
+			document.documentElement.style.overflow = "hidden"
 		},
 		offStream() {
 			this.stream.emptyHtml();
 			this.showStream = false;
+			document.documentElement.style.overflow = "auto"
 		}
 	},
 	components: {

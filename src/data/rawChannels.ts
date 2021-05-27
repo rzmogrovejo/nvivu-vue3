@@ -48,7 +48,9 @@ export default [
 			"movistar-hd": "707"
 		},
 		"content": {
-			"enable": false
+			"enable": true,
+			"type": "video",
+			"source": "https://cdnh4.iblups.com/hls/RMuwrdk7M9.m3u8"
 		}
 	},
 	{

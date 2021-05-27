@@ -21,19 +21,18 @@
 			:class="{ 'backdrop': showStream }">
 			<div @click="offStream()"
 				style="
-					right: 15px;
+					left: 25px;
 					top: 60px;
-					left: auto;
 					opacity: 0.7;
 					position: absolute;
 					background: black;
 					color: white;
 					border-radius: 5px;
-					padding: 5px;
-					margin: 10px 10px 10px 15px;
+					padding: 10px 15px;
+					font-size: 25px;
 					cursor: pointer;
 					z-index: 9999999;">
-				Volver
+				<font-awesome-icon icon="arrow-left" />
 			</div>
 			<div v-html="stream.getHtml()"></div>
 		</div>
@@ -44,6 +43,11 @@
 import { defineComponent } from 'vue';
 import Stream from '../models/Stream';
 import RawChannel from '../contracts/RawChannel';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faArrowLeft)
 
 export default defineComponent({
 	name: 'ChannelsList',
@@ -73,7 +77,10 @@ export default defineComponent({
 			this.stream.emptyHtml();
 			this.showStream = false;
 		}
-	}
+	},
+	components: {
+		FontAwesomeIcon
+	},
 })
 
 </script>

@@ -60,7 +60,7 @@ export default defineComponent({
 	},
 	mounted() {
 		const searchParams = new URLSearchParams(window.location.search);
-		const slug = searchParams.get('canal');
+		const slug = searchParams.get('c');
 		if (slug) {
 			const rawChannel = this.channels?.find((channel: RawChannel) => channel.slug === slug)
 			this.toggleStream(rawChannel);

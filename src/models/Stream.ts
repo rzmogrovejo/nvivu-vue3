@@ -20,7 +20,7 @@ export default class Stream {
 	public emptyHtml() {
 		this.html = '';
 		this.hls.destroy();
-		deleteUrlParam('canal');
+		deleteUrlParam('c');
 	}
 
 	private setHtmlContent(contentType: string, source?: string) {
@@ -59,7 +59,7 @@ export default class Stream {
 
 		const channel = new Channel(rawChannel);
 
-		insertUrlParam('canal', channel.slug());
+		insertUrlParam('c', channel.slug());
 
 		const slugInCamel = channel.slugInCamel();
 

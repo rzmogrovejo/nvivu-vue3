@@ -1,8 +1,10 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/> -->
-  <h1>Canales TV Peruana en vivo</h1>
-  <ChannelsList :channels="channels" />
+	<div class="container font-sans antialiased">
+		<h1 class="py-8 text-3xl font-bold">TV Streaming</h1>
+		<ChannelsList :channels="channels" />
+	</div>
 </template>
 
 <script lang="ts">
@@ -27,11 +29,11 @@ export default class App extends Vue {}
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+/*   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale; */
   /* text-align: center; */
-  color: #2c3e50;
+/*   color: #2c3e50; */
   /* margin-top: 60px; */
 }
 </style>

@@ -1,15 +1,13 @@
 <template lang="">
 	<div>
-		<ul class="">
-			<li v-for="channel in channels" :key="channel">
+		<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+			<div class="font-light no-underline hover:underline text-blue-700" v-for="channel in channels" :key="channel">
 				<a href="javascript:void(0)"
 					@click="toggleStream(channel)">
 					{{ channel.name }}
 				</a>
-			</li>
-			<br/>
-			<li><a href="javascript:void(0)" @click="offStream()">Apagar</a></li>
-		</ul>
+			</div>
+		</div>
 		<div v-if="showStream" 
 			style="
 				overflow: hidden;

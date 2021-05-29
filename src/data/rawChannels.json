@@ -66,8 +66,7 @@
 		"content": {
 			"enable": true,
 			"type": "video",
-			//"source": "https://www.atv.pe/envivo-atv"
-			"source": "https://pe-atv-atv-live.ned.media/atv/smil:atv.smil/playlist.m3u8?iut=",
+			"source": "https://pe-atv-atv-live.ned.media/atv/smil:atv.smil/playlist.m3u8?iut="
 		}
 	},
 	{
@@ -81,8 +80,7 @@
 		"content": {
 			"enable": true,
 			"type": "video",
-			//"source": "https://www.atv.pe/envivo-atv"
-			"source": "https://pe-atv-atv-mas-live.ned.media/atv/smil:atv-mas.smil/playlist.m3u8?iut=",
+			"source": "https://pe-atv-atv-mas-live.ned.media/atv/smil:atv-mas.smil/playlist.m3u8?iut="
 		}		
 	},
 	{
@@ -138,7 +136,6 @@
 		"content": {
 			"enable": true,
 			"type": "video",
-			//"source": "https://www.youtube.com/embed/9DXGrOU5wKQ?autoplay=1"
 			"source": "https://rt-esp.secure.footprint.net/1102_2500Kb.m3u8"
 		}
 	},

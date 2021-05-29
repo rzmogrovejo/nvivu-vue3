@@ -13,7 +13,7 @@ export default [
 			"source": "https://live-latina-mdstrm.secure.footprint.net/live-stream-mp/d1aden84nxx8u4/3330943a0248407faa8c6f5f5c874fa4/5ce7109c7398b977dc0744cd/index_1.m3u8"
 		}
 	},
-	{
+/* 	{
 		"name": "America TV",
 		"slug": "america-tv",
 		"source": "https://tvgo.americatv.com.pe/",
@@ -26,7 +26,7 @@ export default [
 			"type": "iframe",
 			"source": "https://tvgo.americatv.com.pe/"
 		}
-	},
+	}, */
 	{
 		"name": "Panamericana",
 		"slug": "panamericana",
@@ -55,7 +55,7 @@ export default [
 			"source": "https://cdnh4.iblups.com/hls/RMuwrdk7M9.m3u8"
 		}
 	},
-	{
+/* 	{
 		"name": "ATV",
 		"slug": "atv",
 		"source": "https://www.atv.pe/envivo-atv",
@@ -69,7 +69,7 @@ export default [
 			//"source": "https://www.atv.pe/envivo-atv"
 			"source": "https://pe-atv-atv-live.ned.media/atv/smil:atv.smil/playlist.m3u8?iut=",
 		}
-	},
+	}, */
 	{
 		"name": "ATV Más",
 		"slug": "atv-mas",

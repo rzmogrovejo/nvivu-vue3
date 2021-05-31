@@ -46,8 +46,22 @@ export default [
 		"slug": "tv-peru",
 		"source": "https://www.tvperu.gob.pe/play",
 		"number": {
-			"national": "7",
-			"movistar-hd": "707"
+			"national": "xx",
+			"movistar-hd": "xx"
+		},
+		"content": {
+			"enable": true,
+			"type": "video",
+			"source": "https://cdnh4.iblups.com/hls/R9WtilpKKB.m3u8"
+		}
+	},	
+	{
+		"name": "TV Perú Noticias",
+		"slug": "tv-peru-noticias",
+		"source": "https://www.tvperu.gob.pe/play",
+		"number": {
+			"national": "xx",
+			"movistar-hd": "xx"
 		},
 		"content": {
 			"enable": true,

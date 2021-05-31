@@ -55,6 +55,20 @@ export default [
 			"source": "https://cdnh4.iblups.com/hls/RMuwrdk7M9.m3u8"
 		}
 	},
+	{
+		"name": "Canal IPe",
+		"slug": "canal-ipe",
+		"source": "https://www.canalipe.tv/streaming",
+		"number": {
+			"national": "xx",
+			"movistar-hd": "xx"
+		},
+		"content": {
+			"enable": true,
+			"type": "video",
+			"source": "https://cdnh4.iblups.com/hls/OVJNKV4pSr.m3u8"
+		}
+	},
 /* 	{
 		"name": "ATV",
 		"slug": "atv",
@@ -114,9 +128,9 @@ export default [
 		}
 	},
 	{
-		"name": "Canal IPe",
-		"slug": "canal-ipe",
-		"source": "https://www.canalipe.tv/streaming",
+		"name": "Karibeña TV",
+		"slug": "karibena-tv",
+		"source": "https://radiokaribena.pe/videoskaribenatv/",
 		"number": {
 			"national": "xx",
 			"movistar-hd": "xx"
@@ -124,7 +138,7 @@ export default [
 		"content": {
 			"enable": true,
 			"type": "video",
-			"source": "https://cdnh4.iblups.com/hls/OVJNKV4pSr.m3u8"
+			"source": "https://cu.onliv3.com/livevd/user1_hd720/index.m3u8"
 		}
 	},
 	{
@@ -168,6 +182,20 @@ export default [
 			"enable": true,
 			"type": "video",
 			"source": "https://stnothds-lh.akamaihd.net/i/sslf0r0tvnus_1@109755/master.m3u8"
+		}
+	},
+	{
+		"name": "TV Azteca",
+		"slug": "tv-azteca",
+		"source": "https://www.tvazteca.com/aztecauno/al-extremo/envivo",
+		"number": {
+			"national": "xx",
+			"movistar-hd": "xx"
+		},
+		"content": {
+			"enable": true,
+			"type": "video",
+			"source": "https://d1p3rhis559dx3as.ezcdn654.net:8443/hls/ekqf2gz.m3u8?s=-A2Iq3618xE2V8gHt8H_3Q&e=1622344251&ref=ekqf2gz"
 		}
 	}	
 ];

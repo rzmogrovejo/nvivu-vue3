@@ -83,7 +83,7 @@ export default [
 			"source": "https://cdnh4.iblups.com/hls/OVJNKV4pSr.m3u8"
 		}
 	},
-	{
+/* 	{
 		"name": "ATV",
 		"slug": "atv",
 		"source": "https://www.atv.pe/envivo-atv",
@@ -112,7 +112,7 @@ export default [
 			//"source": "https://www.atv.pe/envivo-atv"
 			"source": "https://pe-atv-atv-mas-live.ned.media/atv/smil:atv-mas.smil/playlist.m3u8?iut=",
 		}		
-	},
+	}, */
 	{
 		"name": "Willax",
 		"slug": "willax",

@@ -103,16 +103,16 @@ export default class Stream {
 
 	private async atv(channel: Channel) {
 		const tokenEndpoint = "https://past-server.nedp.io/token/pe-atv-atv?rsk=";
-		this.resolveAtv(channel, tokenEndpoint);
+		this.resolveAtv(channel, tokenEndpoint, '3cb59ec005bace19610c8f9dbb13edcae11573ca');
 	}
 
 	private async atvMas(channel: Channel) {
 		const tokenEndpoint = "https://past-server.nedp.io/token/pe-atv-atv-mas?rsk=";
-		this.resolveAtv(channel, tokenEndpoint);
+		this.resolveAtv(channel, tokenEndpoint, 'ba027770d3e875225dc22db025b2f128dcdbf652');
 	}
 
-	private async resolveAtv(channel: Channel, tokenEndpoint: string) {
-		// i'm going to fetch the script, run it and get the hash
+	private async resolveAtv(channel: Channel, tokenEndpoint: string, hashScriptValue: string) {
+/* 		// i'm going to fetch the script, run it and get the hash
 		const html = await axios
 			.get('https://api.allorigins.win/get?url=' + channel.source())
 			.then(response => response.data.contents);
@@ -129,7 +129,7 @@ export default class Stream {
 
 		hashScript = hashScript.replace(varResult, "return ");
 
-		const hashScriptValue = (new Function (hashScript))();
+		hashScriptValue = hashScriptValue || (new Function (hashScript))(); */
 
 		// if the script returns the hash then request the token
 		const token = await axios

@@ -1,4 +1,6 @@
-# peruvian-tv-channels
+# nvivu
+
+Enjoy your favorite channels via streaming in one place.
 
 ## Project setup
 ```

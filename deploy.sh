@@ -10,5 +10,5 @@ echo 'nvivu.com' > CNAME
 git init
 git add -A
 git commit -m 'deploy'
-git push -f git@github.com:rzmogrovejo/peruvian-tv-channels.git master:gh-pages
+git push -f git@github.com:rzmogrovejo/nvivu.git master:gh-pages
 cd -

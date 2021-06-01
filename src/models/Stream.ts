@@ -46,6 +46,30 @@ export default class Stream {
 							video.play();
 						});
 					});
+					const _this = this;
+					myHls.on(Hls.Events.ERROR, function (event, data) {
+						if (data.fatal) {
+							switch (data.type) {
+								case Hls.ErrorTypes.NETWORK_ERROR:
+									// try to recover network error
+									console.log('fatal network error encountered, try to recover');
+									//myHls.startLoad();
+									_this.setHtmlContent('blank', channel.source())
+									myHls.destroy();
+									break;
+								case Hls.ErrorTypes.MEDIA_ERROR:
+									console.log('fatal media error encountered, try to recover');
+									myHls.recoverMediaError();
+									//_this.setHtmlContent('blank', channel.source())
+									break;
+								default:
+									// cannot recover
+									_this.setHtmlContent('blank', channel.source())
+									myHls.destroy();
+									break;
+							}
+						}
+					});
 				} else if (video.canPlayType('application/vnd.apple.mpegurl')) {
 					video.src = source;
 				}
@@ -90,8 +114,8 @@ export default class Stream {
 	private async resolveAtv(channel: Channel, tokenEndpoint: string) {
 		// i'm going to fetch the script, run it and get the hash
 		const html = await axios
-			.get('https://url-scrapper-v1.herokuapp.com/?url=' + channel.source())
-			.then(response => response.data.html);
+			.get('https://api.allorigins.win/get?url=' + channel.source())
+			.then(response => response.data.contents);
 		
 		const startHashScript = html.indexOf('_0x5d50') - 4; // 56852 - 4
 		const endHashScript = html.indexOf('past-server') - 27; // 58007 - 27
@@ -106,13 +130,6 @@ export default class Stream {
 		hashScript = hashScript.replace(varResult, "return ");
 
 		const hashScriptValue = (new Function (hashScript))();
-
-		// if the script returns undefined then a fallback should be applied
-		if (hashScriptValue == undefined) {
-			this.setHtmlContent('blank', channel.source())
-			window.open(channel.source(), '_blank');
-			return;
-		}
 
 		// if the script returns the hash then request the token
 		const token = await axios
@@ -156,7 +173,7 @@ export default class Stream {
     					left: 50%;
     					transform: translate(-50%, -50%);
 						text-align: center;">
-					Transmisión en un nueva ventana
+					¡Ups! Recarga la página o visita la <a class="no-underline hover:underline text-blue-500" href="${ source }" target="_blank">página del canal</a>.
 				</div>
 			`,
 			'loading': `

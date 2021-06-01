@@ -2,10 +2,7 @@ export default interface RawChannel {
 	"name": string;
 	"slug": string;
 	"url": string;
-	"number": {
-		"national"?: string,
-		"movistar-hd"?: string
-	};
+	"country-code": string;
 	"stream": {
 		"allow": boolean,
 		"type"?: string,

@@ -1,4 +1,4 @@
-import RawChannel from "@/contracts/RawChannel";
+import countryMap from "@/utils/countryMap";
 import snakeToCamel from "@/utils/snakeToCamel";
 import Content from "./Content";
 import Model from "./Model";
@@ -22,5 +22,13 @@ export default class Channel extends Model {
 
 	public slugInCamel(): string {
 		return snakeToCamel(this.slug());
+	}
+
+	public countryCode() {
+		return this.get('country-code');
+	}
+
+	public country() {
+		return countryMap(this.get('country-code'));
 	}
 }

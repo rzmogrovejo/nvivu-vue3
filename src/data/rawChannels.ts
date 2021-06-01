@@ -3,10 +3,7 @@ export default [
 		"name": "Latina",
 		"slug": "latina",
 		"source": "https://www.latina.pe/tvenvivo",
-		"number": {
-			"national": "2",
-			"movistar-hd": "702"
-		},
+		"country-code": "PE",
 		"content": {
 			"enable": true,
 			"type": "video",
@@ -17,10 +14,7 @@ export default [
 		"name": "America TV",
 		"slug": "america-tv",
 		"source": "https://tvgo.americatv.com.pe/",
-		"number": {
-			"national": "4",
-			"movistar-hd": "704"
-		},
+		"country-code": "PE",
 		"content": {
 			"enable": false,
 			"type": "iframe",
@@ -31,10 +25,7 @@ export default [
 		"name": "Panamericana",
 		"slug": "panamericana",
 		"source": "https://panamericana.pe/tvenvivo",
-		"number": {
-			"national": "5",
-			"movistar-hd": "705"
-		},
+		"country-code": "PE",
 		"content": {
 			"enable": true,
 			"type": "iframe",
@@ -45,10 +36,7 @@ export default [
 		"name": "TV Perú",
 		"slug": "tv-peru",
 		"source": "https://www.tvperu.gob.pe/play",
-		"number": {
-			"national": "xx",
-			"movistar-hd": "xx"
-		},
+		"country-code": "PE",
 		"content": {
 			"enable": true,
 			"type": "video",
@@ -59,10 +47,7 @@ export default [
 		"name": "TV Perú Noticias",
 		"slug": "tv-peru-noticias",
 		"source": "https://www.tvperu.gob.pe/play",
-		"number": {
-			"national": "xx",
-			"movistar-hd": "xx"
-		},
+		"country-code": "PE",
 		"content": {
 			"enable": true,
 			"type": "video",
@@ -73,10 +58,7 @@ export default [
 		"name": "Canal IPe",
 		"slug": "canal-ipe",
 		"source": "https://www.canalipe.tv/streaming",
-		"number": {
-			"national": "xx",
-			"movistar-hd": "xx"
-		},
+		"country-code": "PE",
 		"content": {
 			"enable": true,
 			"type": "video",
@@ -87,10 +69,7 @@ export default [
 		"name": "ATV",
 		"slug": "atv",
 		"source": "https://www.atv.pe/envivo-atv",
-		"number": {
-			"national": "9",
-			"movistar-hd": "709"
-		},
+		"country-code": "PE",
 		"content": {
 			"enable": true,
 			"type": "video",
@@ -102,10 +81,7 @@ export default [
 		"name": "ATV Más",
 		"slug": "atv-mas",
 		"source": "https://www.atv.pe/envivo-atvmas",
-		"number": {
-			"national": "21",
-			"movistar-hd": "776"
-		},
+		"country-code": "PE",
 		"content": {
 			"enable": true,
 			"type": "video",
@@ -117,10 +93,7 @@ export default [
 		"name": "Willax",
 		"slug": "willax",
 		"source": "https://willax.tv/en-vivo/",
-		"number": {
-			"national": "16",
-			"movistar-hd": "716"
-		},
+		"country-code": "PE",
 		"content": {
 			"enable": true,
 			"type": "iframe",
@@ -131,10 +104,7 @@ export default [
 		"name": "Éxitosa Noticias",
 		"slug": "exitosa-noticias",
 		"source": "https://exitosanoticias.pe/v1/tvenvivo/",
-		"number": {
-			"national": "xx",
-			"movistar-hd": "xx"
-		},
+		"country-code": "PE",
 		"content": {
 			"enable": true,
 			"type": "video",
@@ -145,10 +115,7 @@ export default [
 		"name": "Karibeña TV",
 		"slug": "karibena-tv",
 		"source": "https://radiokaribena.pe/videoskaribenatv/",
-		"number": {
-			"national": "xx",
-			"movistar-hd": "xx"
-		},
+		"country-code": "PE",
 		"content": {
 			"enable": true,
 			"type": "video",
@@ -159,10 +126,7 @@ export default [
 		"name": "RT",
 		"slug": "rt",
 		"source": "https://actualidad.rt.com/en_vivo",
-		"number": {
-			"national": "xx",
-			"movistar-hd": "xx"
-		},
+		"country-code": "ZZ",
 		"content": {
 			"enable": true,
 			"type": "video",
@@ -174,10 +138,7 @@ export default [
 		"name": "DW",
 		"slug": "dw",
 		"source": "https://www.dw.com/es/multimedia/tv-en-vivo/s-100837",
-		"number": {
-			"national": "xx",
-			"movistar-hd": "xx"
-		},
+		"country-code": "ZZ",
 		"content": {
 			"enable": true,
 			"type": "video",
@@ -188,10 +149,7 @@ export default [
 		"name": "Televisa Noticias",
 		"slug": "televisa-noticias",
 		"source": "https://noticieros.televisa.com/noticias-vivo-forotv/",
-		"number": {
-			"national": "xx",
-			"movistar-hd": "xx"
-		},
+		"country-code": "MX",
 		"content": {
 			"enable": true,
 			"type": "video",
@@ -202,10 +160,7 @@ export default [
 		"name": "TV Azteca",
 		"slug": "tv-azteca",
 		"source": "https://www.tvazteca.com/aztecauno/al-extremo/envivo",
-		"number": {
-			"national": "xx",
-			"movistar-hd": "xx"
-		},
+		"country-code": "MX",
 		"content": {
 			"enable": true,
 			"type": "video",

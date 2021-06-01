@@ -198,7 +198,7 @@ export default [
 			"source": "https://stnothds-lh.akamaihd.net/i/sslf0r0tvnus_1@109755/master.m3u8"
 		}
 	},
-	{
+/* 	{
 		"name": "TV Azteca",
 		"slug": "tv-azteca",
 		"source": "https://www.tvazteca.com/aztecauno/al-extremo/envivo",
@@ -211,5 +211,5 @@ export default [
 			"type": "video",
 			"source": "https://d1p3rhis559dx3as.ezcdn654.net:8443/hls/ekqf2gz.m3u8?s=-A2Iq3618xE2V8gHt8H_3Q&e=1622344251&ref=ekqf2gz"
 		}
-	}	
+	}	 */
 ];

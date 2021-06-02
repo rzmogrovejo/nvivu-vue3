@@ -8,6 +8,7 @@ export default [
 			"enable": true,
 			"type": "video",
 			"source": "https://live-latina-mdstrm.secure.footprint.net/live-stream-mp/d1aden84nxx8u4/3330943a0248407faa8c6f5f5c874fa4/5ce7109c7398b977dc0744cd/index_2.m3u8"
+			/* "source": "https://mdstrm.com/live-stream-playlist/5ce7109c7398b977dc0744cd.m3u8" */
 		}
 	},
 /* 	{
@@ -122,6 +123,17 @@ export default [
 			"source": "https://cu.onliv3.com/livevd/user1_hd720/index.m3u8"
 		}
 	},
+	{
+		"name": "Congreso Perú",
+		"slug": "congreso-peru",
+		"source": "https://comunicaciones.congreso.gob.pe/tv-congreso/",
+		"country-code": "PE",
+		"content": {
+			"enable": true,
+			"type": "iframe",
+			"source": "https://www.youtube.com/embed/UgDb4nMF_fg?autoplay=1"
+		}
+	},		
 	{
 		"name": "RT",
 		"slug": "rt",

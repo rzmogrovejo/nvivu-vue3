@@ -19,7 +19,10 @@ import { defineComponent } from "vue";
 export default defineComponent({
 	name: 'IframeType',
 	props: {
-		source: String
+		source: {
+			type: String,
+			required: true
+		}
 	}
 })
 </script>

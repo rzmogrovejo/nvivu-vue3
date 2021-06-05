@@ -3,9 +3,9 @@ export default interface RawChannel {
 	"slug": string;
 	"url": string;
 	"country-code": string;
-	"stream": {
-		"allow": boolean,
+	"content": {
+		"enable": boolean,
 		"type"?: string,
-		"url"?: string
+		"source"?: string
 	}
 }

@@ -27,48 +27,46 @@ export default defineComponent({
 		}
 	},
 	mounted() {
-		setTimeout(() => {
-			const video: any = document.getElementById("video");
-			if (Hls.isSupported()) {
-				console.log(this.source);
-				
-				this.hls.attachMedia(video);
-				this.hls.on(Hls.Events.MEDIA_ATTACHED, () => {
-					console.log("video and hls.js are now bound together !");
-					this.hls.loadSource(this.source!);
-					this.hls.on(Hls.Events.MANIFEST_PARSED, (event: any, data: any) => {
-						console.log("manifest loaded, found " + data.levels.length + " quality level");
-						video.play();
-					});
+		const video: any = document.getElementById("video");
+		if (Hls.isSupported()) {
+			console.log(this.source);
+			
+			this.hls.attachMedia(video);
+			this.hls.on(Hls.Events.MEDIA_ATTACHED, () => {
+				console.log("video and hls.js are now bound together !");
+				this.hls.loadSource(this.source!);
+				this.hls.on(Hls.Events.MANIFEST_PARSED, (event: any, data: any) => {
+					console.log("manifest loaded, found " + data.levels.length + " quality level");
+					video.play();
 				});
-				const _this = this;
-				this.hls.on(Hls.Events.ERROR, function (event, data) {
-					if (data.fatal) {
-						switch (data.type) {
-							case Hls.ErrorTypes.NETWORK_ERROR:
-								// try to recover network error
-								console.log('fatal network error encountered, try to recover');
-								//myHls.startLoad();
-								//_this.setHtmlContent('blank', this.sou)
-								_this.hls.destroy();
-								break;
-							case Hls.ErrorTypes.MEDIA_ERROR:
-								console.log('fatal media error encountered, try to recover');
-								_this.hls.recoverMediaError();
-								//_this.setHtmlContent('blank', channel.source())
-								break;
-							default:
-								// cannot recover
-								//_this.setHtmlContent('blank', channel.source())
-								_this.hls.destroy();
-								break;
-						}
+			});
+			const _this = this;
+			this.hls.on(Hls.Events.ERROR, function (event, data) {
+				if (data.fatal) {
+					switch (data.type) {
+						case Hls.ErrorTypes.NETWORK_ERROR:
+							// try to recover network error
+							console.log('fatal network error encountered, try to recover');
+							//myHls.startLoad();
+							//_this.setHtmlContent('blank', this.sou)
+							_this.hls.destroy();
+							break;
+						case Hls.ErrorTypes.MEDIA_ERROR:
+							console.log('fatal media error encountered, try to recover');
+							_this.hls.recoverMediaError();
+							//_this.setHtmlContent('blank', channel.source())
+							break;
+						default:
+							// cannot recover
+							//_this.setHtmlContent('blank', channel.source())
+							_this.hls.destroy();
+							break;
 					}
-				});
-			} else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-				video.src = this.source;
-			}
-		}, 4000);
+				}
+			});
+		} else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+			video.src = this.source;
+		}
 	},
 	unmounted() {
 		this.hls.destroy();

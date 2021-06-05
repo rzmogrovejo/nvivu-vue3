@@ -53,7 +53,7 @@ export default defineComponent({
 			source: ""
 		}
 	},
-	mounted() {
+	created() {
 		const slug = this.$route.params.slug;
 		const channel = this.channels.find((channel: RawChannel) => channel.slug === slug);
 		if (channel) {

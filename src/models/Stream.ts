@@ -1,4 +1,3 @@
-import { deleteUrlParam, insertUrlParam } from '@/utils/urlParam';
 import axios from 'axios';
 import Hls from 'hls.js';
 import RawChannel from '../contracts/RawChannel';
@@ -20,7 +19,6 @@ export default class Stream {
 	public emptyHtml() {
 		this.html = '';
 		this.hls.destroy();
-		deleteUrlParam('c');
 	}
 
 	private setHtmlContent(contentType: string, source?: string) {
@@ -82,8 +80,6 @@ export default class Stream {
 		this.setHtmlContent('loading');
 
 		const channel = new Channel(rawChannel);
-
-		insertUrlParam('c', channel.slug());
 
 		const slugInCamel = channel.slugInCamel();
 

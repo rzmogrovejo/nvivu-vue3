@@ -18,13 +18,16 @@ import { defineComponent } from "vue";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import rawChannels from '@/data/rawChannels';
 
 library.add(faPlayCircle)
 
 export default defineComponent({
 	name: 'Home',
-	props: {
-		channels: Object
+	data() {
+		return {
+			channels: rawChannels
+		}
 	},
 	components: {
 		FontAwesomeIcon

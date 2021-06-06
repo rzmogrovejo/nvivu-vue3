@@ -1,18 +1,12 @@
 <template>
-	<router-view :channels="channels" />
+	<router-view />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import rawChannels from '@/data/rawChannels';
 
 export default defineComponent({
-	name: 'App',
-	data() {
-		return {
-			channels: rawChannels
-		}
-	}
+	name: 'App'
 })
 </script>
 

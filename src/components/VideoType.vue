@@ -26,6 +26,7 @@ export default defineComponent({
 			hls: new Hls()
 		}
 	},
+	emits: ['shouldFallback'],
 	mounted() {
 		const video: any = document.getElementById("video");
 		if (Hls.isSupported()) {
@@ -48,17 +49,17 @@ export default defineComponent({
 							// try to recover network error
 							console.log('fatal network error encountered, try to recover');
 							//myHls.startLoad();
-							//_this.setHtmlContent('blank', this.sou)
+							_this.$emit('shouldFallback');
 							_this.hls.destroy();
 							break;
 						case Hls.ErrorTypes.MEDIA_ERROR:
 							console.log('fatal media error encountered, try to recover');
 							_this.hls.recoverMediaError();
-							//_this.setHtmlContent('blank', channel.source())
+							//_this.$emit('shouldFallback');
 							break;
 						default:
 							// cannot recover
-							//_this.setHtmlContent('blank', channel.source())
+							_this.$emit('shouldFallback');
 							_this.hls.destroy();
 							break;
 					}

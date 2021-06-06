@@ -11,7 +11,13 @@ const routes: RouteRecordRaw[] = [
 		path: '/c/:slug',
 		name: 'Channel',
 		component: () => import('@/views/Channel.vue'),
-		props: true
+		props: true,  
+	},
+	{
+		path: '/:catchAll(.*)',
+		redirect: {
+			name: 'Home'
+		},
 	}
 ];
 

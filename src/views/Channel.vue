@@ -21,7 +21,9 @@
 					z-index: 9999999;">
 			<font-awesome-icon icon="arrow-left" />
 		</router-link>
-		<component :is="contentType" :source="source"></component>
+		<div v-if="readyToDisplay">
+			<component :is="contentType" :source="contentSource" @should-fallback="useContentFallback"></component>
+		</div>
 	</div>	
 </template>
 
@@ -29,47 +31,59 @@
 // @ is an alias to /src
 import IframeType from "@/components/IframeType.vue";
 import VideoType from "@/components/VideoType.vue";
+import FallbackType from "@/components/FallbackType.vue"
 import RawChannel from '@/contracts/RawChannel';
-import Stream from '@/models/Stream';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { defineComponent } from "vue";
+import rawChannels from '@/data/rawChannels';
 
 library.add(faArrowLeft)
 
 export default defineComponent({
 	name: 'Channel',
-	props: {
-		channels: {
-			type: Object as () => RawChannel[],
-			required: true
-		}
-	},
 	data() {
 		return {
-			stream: new Stream(),
-			contentType: "",
-			source: ""
+			contentType: '',
+			contentSource: '',
+			channelSource: ''
 		}
 	},
-	created() {
-		const slug = this.$route.params.slug;
-		const channel = this.channels.find((channel: RawChannel) => channel.slug === slug);
-		if (channel) {
-			this.source = channel.content.source!;
-			this.resolveContentType(channel);
+	computed: {
+		readyToDisplay(): boolean {
+			const value = this.contentType !== '' && this.contentSource !== '';
+			return value;
 		}
 	},
+	beforeRouteEnter(to, from, next) {
+        // check before enter the route
+        // if check failed, you can cancel this routing
+		const slug = to.params.slug;
+		const channel = rawChannels.find((channel: RawChannel) => channel.slug === slug);
+
+		if (!channel) {
+			return next({ name: 'Home' });
+		}
+
+		next((vm: any) => vm.resolveContent(channel));
+    },
 	methods: {
-		resolveContentType(channel: RawChannel) {
+		resolveContent(channel: RawChannel) {
 			const _type = channel.content.type;
 			this.contentType = _type!.charAt(0).toUpperCase() + _type!.slice(1) + 'Type';
+			this.contentSource = channel.content.source!;
+			this.channelSource = channel.source;
+		},
+		useContentFallback() {
+			this.contentType = 'FallbackType';
+			this.contentSource = this.channelSource;
 		}
 	},
 	components: {
 		VideoType,
 		IframeType,
+		FallbackType,
 		FontAwesomeIcon
 	}
 })

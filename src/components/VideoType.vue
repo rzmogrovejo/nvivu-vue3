@@ -38,12 +38,11 @@ export default defineComponent({
 				this.hls.loadSource(this.source!);
 				this.hls.on(Hls.Events.MANIFEST_PARSED, (event: any, data: any) => {
 					console.log("manifest loaded, found " + data.levels.length + " quality level");
-					try {
-						video.play();
-					} catch (e){
+					const playPromise = video.play();
+					playPromise.catch(() => {
 						video.muted = 'muted';
 						video.play();
-					}
+					});
 				});
 			});
 			const _this = this;

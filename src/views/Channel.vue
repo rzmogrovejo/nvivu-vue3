@@ -37,17 +37,22 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { defineComponent } from "vue";
-import rawChannels from '@/data/rawChannels';
 
 library.add(faArrowLeft)
 
 export default defineComponent({
 	name: 'Channel',
+	props: {
+		channels: {
+			type: Object as () => RawChannel[],
+			required: true
+		}
+	},	
 	data() {
 		return {
 			contentType: '',
 			contentSource: '',
-			channelSource: ''
+			contentFallbackSource: ''
 		}
 	},
 	computed: {
@@ -57,27 +62,33 @@ export default defineComponent({
 		}
 	},
 	beforeRouteEnter(to, from, next) {
-        // check before enter the route
-        // if check failed, you can cancel this routing
-		const slug = to.params.slug;
-		const channel = rawChannels.find((channel: RawChannel) => channel.slug === slug);
+		// check before enter the route
+		// if check failed, you can cancel this routing
+		next((vm: any) => {
+			const slug = to.params.slug;
+			const channel = vm.channels.find((channel: RawChannel) => {
+				return (channel.slug === slug) && (channel.contentEnabled);
+			});
 
-		if (!channel) {
-			return next({ name: 'Home' });
-		}
+			if (!channel) {
+				//return next({ name: 'Home' });
+				return vm.$router.push({ name: 'Home' });
+			}
 
-		next((vm: any) => vm.resolveContent(channel));
-    },
+			vm.resolveContent(channel);
+		});
+
+	},	
 	methods: {
 		resolveContent(channel: RawChannel) {
-			const _type = channel.content.type;
-			this.contentType = _type!.charAt(0).toUpperCase() + _type!.slice(1) + 'Type';
-			this.contentSource = channel.content.source!;
-			this.channelSource = channel.source;
+			const contentType = channel.contentType;
+			this.contentType = contentType!.charAt(0).toUpperCase() + contentType!.slice(1) + 'Type';
+			this.contentSource = channel.contentSource;
+			this.contentFallbackSource = channel.contentFallbackSource;
 		},
 		useContentFallback() {
 			this.contentType = 'FallbackType';
-			this.contentSource = this.channelSource;
+			this.contentSource = this.contentFallbackSource;
 		}
 	},
 	components: {

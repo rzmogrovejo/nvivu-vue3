@@ -10,8 +10,7 @@ const routes: RouteRecordRaw[] = [
 	{
 		path: '/c/:slug',
 		name: 'Channel',
-		component: () => import('@/views/Channel.vue'),
-		props: true,  
+		component: () => import('@/views/Channel.vue')
 	},
 	{
 		path: '/:catchAll(.*)',

@@ -1,0 +1,122 @@
+[
+	{
+		"name": "Latina",
+		"slug": "latina",
+		"contentSource": "https://live-latina-mdstrm.secure.footprint.net/live-stream-mp/d1aden84nxx8u4/3330943a0248407faa8c6f5f5c874fa4/5ce7109c7398b977dc0744cd/index_2.m3u8",
+		"contentFallbackSource": "https://www.latina.pe/tvenvivo",
+		"contentFormat": "m3u8",
+		"contentEnabled": true,
+		"countryName": "Perú",
+		"countryIsoCode": "PE"
+	},
+	{
+		"name": "Panamericana",
+		"slug": "panamericana",
+		"contentSource": "https://www.dailymotion.com/embed/video/x774s7s?autoplay=1",
+		"contentFallbackSource": "https://panamericana.pe/tvenvivo",
+		"contentFormat": "iframe",
+		"contentEnabled": true,
+		"countryName": "Perú",
+		"countryIsoCode": "PE"
+	},
+	{
+		"name": "TV Perú",
+		"slug": "tv-peru",
+		"contentSource": "https://cdnh4.iblups.com/hls/R9WtilpKKB.m3u8",
+		"contentFallbackSource": "https://www.tvperu.gob.pe/play",
+		"contentFormat": "m3u8",
+		"contentEnabled": false,
+		"countryName": "Perú",
+		"countryIsoCode": "PE"
+	},	
+	{
+		"name": "TV Perú Noticias",
+		"slug": "tv-peru-noticias",
+		"contentSource": "https://cdnh4.iblups.com/hls/RMuwrdk7M9.m3u8",
+		"contentFallbackSource": "https://www.tvperu.gob.pe/play",
+		"contentFormat": "m3u8",
+		"contentEnabled": false,
+		"countryName": "Perú",
+		"countryIsoCode": "PE"
+	},
+	{
+		"name": "Canal IPe",
+		"slug": "canal-ipe",
+		"contentSource": "https://cdnh4.iblups.com/hls/OVJNKV4pSr.m3u8",
+		"contentFallbackSource": "https://www.canalipe.tv/streaming",
+		"contentFormat": "m3u8",
+		"contentEnabled": false,
+		"countryName": "Perú",
+		"countryIsoCode": "PE"
+	},
+	{
+		"name": "Willax",
+		"slug": "willax",
+		"contentSource": "https://www.dailymotion.com/embed/video/x7x4dgx?autoplay=1",
+		"contentFallbackSource": "https://willax.tv/en-vivo/",
+		"contentFormat": "iframe",
+		"contentEnabled": true,
+		"countryName": "Perú",
+		"countryIsoCode": "PE"		
+	},
+	{
+		"name": "Éxitosa Noticias",
+		"slug": "exitosa-noticias",
+		"contentSource": "https://cu.onliv3.com/livevd1/user2_hd720/index.m3u8",
+		"contentFallbackSource": "https://exitosanoticias.pe/v1/tvenvivo/",
+		"contentFormat": "m3u8",
+		"contentEnabled": true,
+		"countryName": "Perú",
+		"countryIsoCode": "PE"
+	},
+	{
+		"name": "Karibeña TV",
+		"slug": "karibena-tv",
+		"contentSource": "https://cu.onliv3.com/livevd/user1_hd720/index.m3u8",
+		"contentFallbackSource": "https://radiokaribena.pe/videoskaribenatv/",
+		"contentFormat": "m3u8",
+		"contentEnabled": true,
+		"countryName": "Perú",
+		"countryIsoCode": "PE"
+	},
+	{
+		"name": "Congreso Perú",
+		"slug": "congreso-peru",
+		"contentSource": "https://www.youtube.com/embed/UgDb4nMF_fg?autoplay=1",
+		"contentFallbackSource": "https://comunicaciones.congreso.gob.pe/tv-congreso/",
+		"contentFormat": "iframe",
+		"contentEnabled": true,
+		"countryName": "Perú",
+		"countryIsoCode": "PE"
+	},		
+	{
+		"name": "RT",
+		"slug": "rt",
+		"contentSource": "https://rt-esp.secure.footprint.net/1102_2500Kb.m3u8",
+		"contentFallbackSource": "https://actualidad.rt.com/en_vivo",
+		"contentFormat": "m3u8",
+		"contentEnabled": true,
+		"countryName": "Latam",
+		"countryIsoCode": "ZZ"		
+	},
+	{
+		"name": "DW",
+		"slug": "dw",
+		"contentSource": "https://dwstream3-lh.akamaihd.net/i/dwstream3_live@124409/master.m3u8",
+		"contentFallbackSource": "https://www.dw.com/es/multimedia/tv-en-vivo/s-100837",
+		"contentFormat": "m3u8",
+		"contentEnabled": true,
+		"countryName": "Latam",
+		"countryIsoCode": "ZZ"
+	},
+	{
+		"name": "Televisa Noticias",
+		"slug": "televisa-noticias",
+		"contentSource": "https://stnothds-lh.akamaihd.net/i/sslf0r0tvnus_1@109755/master.m3u8",
+		"contentFallbackSource": "https://noticieros.televisa.com/noticias-vivo-forotv/",
+		"contentFormat": "m3u8",
+		"contentEnabled": true,
+		"countryName": "Latam",
+		"countryIsoCode": "MX"		
+	}
+]

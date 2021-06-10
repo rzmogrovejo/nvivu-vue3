@@ -37,17 +37,12 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { defineComponent } from "vue";
+import axios from "axios";
 
 library.add(faArrowLeft)
 
 export default defineComponent({
 	name: 'Channel',
-	props: {
-		channels: {
-			type: Object as () => RawChannel[],
-			required: true
-		}
-	},	
 	data() {
 		return {
 			contentType: '',
@@ -61,23 +56,24 @@ export default defineComponent({
 			return value;
 		}
 	},
-	beforeRouteEnter(to, from, next) {
+	async beforeRouteEnter(to, from, next) {
 		// check before enter the route
 		// if check failed, you can cancel this routing
-		next((vm: any) => {
-			const slug = to.params.slug;
-			const channel = vm.channels.find((channel: RawChannel) => {
-				return (channel.slug === slug) && (channel.contentEnabled);
-			});
+		const slug = to.params.slug;
+		const channel = await 
+			axios('https://raw.githubusercontent.com/rzmogrovejo/nvivu/main/src/data/raw-channelsv2.json')
+				.then((response) => response.data
+					.find((channel: RawChannel) => {
+						return (channel.slug === slug) && (channel.contentEnabled);
+					}));
 
-			if (!channel) {
-				//return next({ name: 'Home' });
-				return vm.$router.push({ name: 'Home' });
-			}
+		if (!channel) {
+			return next({ name: 'Home' });
+		}
 
+		next((vm : any) => {
 			vm.resolveContent(channel);
-		});
-
+		})
 	},	
 	methods: {
 		resolveContent(channel: RawChannel) {

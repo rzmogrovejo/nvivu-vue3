@@ -9,7 +9,7 @@
 			<p class="pb-6 font-light">Disfruta de tus canales favoritos vía streaming, selecciona uno:</p>
 		</div>
 		<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-			<div class="font-light no-underline hover:underline text-blue-700" v-for="channel in channels" :key="channel">
+			<div class="font-light no-underline hover:underline text-blue-700" v-for="channel in rawChannels" :key="channel">
 				<router-link :to="{ name: 'Channel', params: { slug: channel.slug } }">
 					{{ channel.name }}
 				</router-link>
@@ -25,16 +25,22 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import RawChannel from "@/contracts/RawChannel";
+import axios from "axios";
 
 library.add(faPlayCircle)
 
 export default defineComponent({
 	name: 'Home',
-	props: {
-		channels: {
-			type: Object as () => RawChannel[],
-			required: true
+	data() {
+		return {
+			rawChannels: []
 		}
+	},	
+	async created() {
+		this.rawChannels = await 
+			axios('https://raw.githubusercontent.com/rzmogrovejo/nvivu/main/src/data/raw-channelsv2.json')
+				.then((response) => response.data
+					.filter((channel: RawChannel) => channel.contentEnabled));
 	},
 	components: {
 		FontAwesomeIcon

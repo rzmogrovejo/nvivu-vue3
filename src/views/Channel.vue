@@ -38,6 +38,7 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { defineComponent } from "vue";
 import axios from "axios";
+import snakeToCamel from '@/utils/snakeToCamel';
 
 library.add(faArrowLeft)
 
@@ -95,8 +96,9 @@ export default defineComponent({
 			this.contentSource = this.contentFallbackSource;
 		},
 		async resolveSource(channel: RawChannel) {
-			if (typeof (this as any)[channel.slug] === "function") {
-				return await (this as any)[channel.slug](channel);
+			const slugInCamel = snakeToCamel(channel.slug)
+			if (typeof (this as any)[slugInCamel] === "function") {
+				return await (this as any)[slugInCamel](channel);
 			}
 
 			return channel.contentSource;

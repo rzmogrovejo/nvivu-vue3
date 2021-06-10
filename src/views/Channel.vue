@@ -96,14 +96,12 @@ export default defineComponent({
 		},
 		async resolveSource(channel: RawChannel) {
 			if (typeof (this as any)[channel.slug] === "function") {
-				console.log(channel.slug);
 				return await (this as any)[channel.slug](channel);
 			}
 
 			return channel.contentSource;
 		},
 		async atv(channel: RawChannel) {
-			console.log('olaa');
 			const tokenEndpoint = "https://past-server.nedp.io/token/pe-atv-atv?rsk=";
 			return await this.resolveAtv(channel, tokenEndpoint);
 		},

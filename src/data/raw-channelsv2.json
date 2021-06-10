@@ -55,6 +55,16 @@
 		"contentSource": "https://pe-atv-atv-live.ned.media/atv/smil:atv.smil/playlist.m3u8?iut=",
 		"contentFallbackSource": "https://www.atv.pe/envivo-atv",
 		"contentType": "video",
+		"contentEnabled": false,
+		"countryName": "Perú",
+		"countryIsoCode": "PE"
+	},
+	{
+		"name": "ATV mas",
+		"slug": "atv-mas",
+		"contentSource": "https://pe-atv-atv-mas-live.ned.media/atv/smil:atv-mas.smil/playlist.m3u8?iut=",
+		"contentFallbackSource": "https://www.atv.pe/envivo-atvmas",
+		"contentType": "video",
 		"contentEnabled": true,
 		"countryName": "Perú",
 		"countryIsoCode": "PE"

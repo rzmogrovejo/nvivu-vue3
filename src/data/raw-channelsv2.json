@@ -50,6 +50,16 @@
 		"countryIsoCode": "PE"
 	},
 	{
+		"name": "ATV",
+		"slug": "atv",
+		"contentSource": "https://pe-atv-atv-live.ned.media/atv/smil:atv.smil/playlist.m3u8?iut=",
+		"contentFallbackSource": "https://www.atv.pe/envivo-atv",
+		"contentType": "video",
+		"contentEnabled": true,
+		"countryName": "Perú",
+		"countryIsoCode": "PE"
+	},	
+	{
 		"name": "Willax",
 		"slug": "willax",
 		"contentSource": "https://www.dailymotion.com/embed/video/x7x4dgx?autoplay=1",

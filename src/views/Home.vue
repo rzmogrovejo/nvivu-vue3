@@ -37,8 +37,16 @@ export default defineComponent({
 		}
 	},	
 	async created() {
+		let endpoint = "";
+		
+		if (process.env.NODE_ENV === 'production') {
+			endpoint = "https://raw.githubusercontent.com/rzmogrovejo/nvivu/main/public/raw-channelsv2.json"
+		} else {
+			endpoint = "https://raw.githubusercontent.com/rzmogrovejo/nvivu/main/src/data/raw-channelsv2.json"
+		}
+
 		this.rawChannels = await 
-			axios('https://raw.githubusercontent.com/rzmogrovejo/nvivu/main/src/data/raw-channelsv2.json')
+			axios(endpoint)
 				.then((response) => response.data
 					.filter((channel: RawChannel) => channel.contentEnabled));
 	},

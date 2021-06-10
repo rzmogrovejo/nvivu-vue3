@@ -59,9 +59,17 @@ export default defineComponent({
 	async beforeRouteEnter(to, from, next) {
 		// check before enter the route
 		// if check failed, you can cancel this routing
+		let endpoint = "";
+		
+		if (process.env.NODE_ENV === 'production') {
+			endpoint = "https://raw.githubusercontent.com/rzmogrovejo/nvivu/main/public/raw-channelsv2.json"
+		} else {
+			endpoint = "https://raw.githubusercontent.com/rzmogrovejo/nvivu/main/src/data/raw-channelsv2.json"
+		}
+
 		const slug = to.params.slug;
 		const channel = await 
-			axios('https://raw.githubusercontent.com/rzmogrovejo/nvivu/main/src/data/raw-channelsv2.json')
+			axios(endpoint)
 				.then((response) => response.data
 					.find((channel: RawChannel) => {
 						return (channel.slug === slug) && (channel.contentEnabled);
@@ -74,17 +82,61 @@ export default defineComponent({
 		next((vm : any) => {
 			vm.resolveContent(channel);
 		})
-	},	
+	},
 	methods: {
-		resolveContent(channel: RawChannel) {
+		async resolveContent(channel: RawChannel) {
 			const contentType = channel.contentType;
 			this.contentType = contentType!.charAt(0).toUpperCase() + contentType!.slice(1) + 'Type';
-			this.contentSource = channel.contentSource;
+			this.contentSource = await this.resolveSource(channel);
 			this.contentFallbackSource = channel.contentFallbackSource;
 		},
 		useContentFallback() {
 			this.contentType = 'FallbackType';
 			this.contentSource = this.contentFallbackSource;
+		},
+		async resolveSource(channel: RawChannel) {
+			if (typeof (this as any)[channel.slug] === "function") {
+				console.log(channel.slug);
+				return await (this as any)[channel.slug](channel);
+			}
+
+			return channel.contentSource;
+		},
+		async atv(channel: RawChannel) {
+			console.log('olaa');
+			const tokenEndpoint = "https://past-server.nedp.io/token/pe-atv-atv?rsk=";
+			return await this.resolveAtv(channel, tokenEndpoint);
+		},
+		async atvMas(channel: RawChannel) {
+			const tokenEndpoint = "https://past-server.nedp.io/token/pe-atv-atv-mas?rsk=";
+			return await this.resolveAtv(channel, tokenEndpoint)
+		},
+		async resolveAtv(channel: RawChannel, tokenEndpoint: string) {
+			// i'm going to fetch the script, run it and get the hash
+			const html = await axios
+				.get('https://api.allorigins.win/get?url=' + channel.contentFallbackSource)
+				.then(response => response.data.contents);
+			
+			const startHashScript = html.indexOf('_0x5d50') - 4; // 56852 - 4
+			const endHashScript = html.indexOf('past-server') - 27; // 58007 - 27
+
+			let hashScript = html.substring(startHashScript, endHashScript);
+
+			const nullPos = hashScript.indexOf('null') + 7;
+			const equalPos = hashScript.indexOf('=', nullPos) + 1;
+
+			const varResult = hashScript.substring(nullPos,equalPos);
+
+			hashScript = hashScript.replace(varResult, "return ");
+
+			const hashScriptValue = (new Function(hashScript))();
+
+			// if the script returns the hash then request the token
+			const token = await axios
+				.get(tokenEndpoint + hashScriptValue)
+				.then(response => response.data.token);
+
+			return channel.contentSource + token;
 		}
 	},
 	components: {

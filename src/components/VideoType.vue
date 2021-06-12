@@ -53,7 +53,7 @@ export default defineComponent({
 							// try to recover network error
 							console.log('fatal network error encountered, try to recover');
 							//myHls.startLoad();
-							_this.$emit('shouldFallback');
+							_this.$emit('shouldFallback', 'FallbackType');
 							_this.hls.destroy();
 							break;
 						case Hls.ErrorTypes.MEDIA_ERROR:
@@ -63,7 +63,7 @@ export default defineComponent({
 							break;
 						default:
 							// cannot recover
-							_this.$emit('shouldFallback');
+							_this.$emit('shouldFallback', 'FallbackType');
 							_this.hls.destroy();
 							break;
 					}

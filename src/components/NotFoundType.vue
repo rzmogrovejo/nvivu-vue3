@@ -8,7 +8,7 @@
 			left: 50%;
 			transform: translate(-50%, -50%);
 			text-align: center;" class="font-light">
-		¡Ups! Recarga la página o visita la <a class="font-light no-underline hover:underline text-blue-600" :href="source" target="_blank">página del canal</a>.
+		¡Ups! No se encontró el contenido, <router-link class="font-light no-underline hover:underline text-blue-600" to="/" >regresa al inicio</router-link>.
 	</div>	
 </template>
 
@@ -17,12 +17,6 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-	name: 'FallbackType',
-	props: {
-		source: {
-			type: String,
-			required: true
-		}
-	}
+	name: 'NotFoundType',
 })
 </script>

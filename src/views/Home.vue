@@ -10,7 +10,7 @@
 		</div>
 		<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
 			<div class="font-light no-underline hover:underline text-blue-700" v-for="channel in rawChannels" :key="channel">
-				<router-link :to="{ name: 'Channel', params: { slug: channel.slug } }">
+				<router-link :to="{ name: 'Player', params: { slug: channel.slug } }">
 					{{ channel.name }}
 				</router-link>
 			</div>
@@ -25,30 +25,27 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import RawChannel from "@/contracts/RawChannel";
-import axios from "axios";
+//import axios from "axios";
 
 library.add(faPlayCircle)
 
 export default defineComponent({
 	name: 'Home',
-	data() {
+	props: {
+		rawChannels: {
+			type: Object as () => Promise<RawChannel[]>,
+			required: true
+		}
+	},
+/* 	data() {
 		return {
 			rawChannels: []
 		}
-	},	
-	async created() {
-		let endpoint = "";
-		
-		if (process.env.NODE_ENV === 'production') {
-			endpoint = "https://raw.githubusercontent.com/rzmogrovejo/nvivu/main/public/raw-channelsv2.json"
-		} else {
-			endpoint = "https://raw.githubusercontent.com/rzmogrovejo/nvivu/main/src/data/raw-channelsv2.json"
-		}
-
-		this.rawChannels = await 
-			axios(endpoint)
-				.then((response) => response.data
-					.filter((channel: RawChannel) => channel.contentEnabled));
+	},	 */
+/* 	async created() {
+	}, */
+	mounted() {
+		console.log('home');
 	},
 	components: {
 		FontAwesomeIcon

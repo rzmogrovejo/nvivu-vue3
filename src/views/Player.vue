@@ -22,7 +22,7 @@
 			<font-awesome-icon icon="arrow-left" />
 		</router-link>
 		<div v-if="readyToDisplay">
-			<component :is="contentType" :source="contentSource" @should-fallback="useContentFallback"></component>
+			<component :is="contentType" :source="contentSource" @should-fallback="resolveContentWith"></component>
 		</div>
 	</div>	
 </template>
@@ -32,74 +32,77 @@
 import IframeType from "@/components/IframeType.vue";
 import VideoType from "@/components/VideoType.vue";
 import FallbackType from "@/components/FallbackType.vue"
+import NotFoundType from "@/components/NotFoundType.vue";
 import RawChannel from '@/contracts/RawChannel';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { defineComponent } from "vue";
-import axios from "axios";
 import Channel from "@/models/Channel";
 
 library.add(faArrowLeft)
 
 export default defineComponent({
-	name: 'Channel',
+	name: 'Player',
+	props: {
+		rawChannels: {
+			type: Object as () => Promise<RawChannel[]>,
+			required: true
+		}
+	},
 	data() {
 		return {
 			contentType: '',
 			contentSource: '',
-			contentFallbackSource: ''
+			contentFallbackSource: '',
+			readyToDisplay: false
 		}
 	},
-	computed: {
-		readyToDisplay(): boolean {
-			const value = this.contentType !== '' && this.contentSource !== '';
-			return value;
-		}
+	async created() {
+		const slug = (this.$route.params.slug as string);
+		await this.validateSlug(slug);
 	},
-	async beforeRouteEnter(to, from, next) {
-		// check before enter the route
-		// if check failed, you can cancel this routing
-		let endpoint = "";
-		
-		if (process.env.NODE_ENV === 'production') {
-			endpoint = "https://raw.githubusercontent.com/rzmogrovejo/nvivu/main/public/raw-channelsv2.json"
-		} else {
-			endpoint = "https://raw.githubusercontent.com/rzmogrovejo/nvivu/main/src/data/raw-channelsv2.json"
-		}
-
-		const slug = to.params.slug;
-		const channel = await 
-			axios(endpoint)
-				.then((response) => response.data
-					.find((channel: RawChannel) => {
-						return (channel.slug === slug) && (channel.contentEnabled);
-					}));
-
-		if (!channel) {
-			return next({ name: 'Home' });
-		}
-
-		next((vm : any) => {
-			vm.resolveContent(channel);
-		})
+	async beforeRouteUpdate(to, from, next) {
+		const slug = (to.params.slug as string);
+		await this.validateSlug(slug);
+		next();
+	},
+	mounted() {
+		console.log('player');
 	},
 	methods: {
+		async validateSlug(slug: string) {
+			const rawChannel = await (this.rawChannels as any).find((rawChannel: RawChannel) => {
+				return rawChannel.slug === slug && rawChannel.contentEnabled
+			});
+
+			if (!rawChannel) {
+				this.resolveContentWith('NotFoundType');
+				return;
+			}
+
+			await this.resolveContent(rawChannel);				
+		},		
 		async resolveContent(rawChannel: RawChannel) {
+			this.readyToDisplay = false;
 			const channel = new Channel(rawChannel);
 			this.contentType = channel.resolveContentType();
 			this.contentSource = await channel.resolveContentSource();
 			this.contentFallbackSource = channel.contentFallbackSource();
+			this.readyToDisplay = true;
 		},
-		useContentFallback() {
-			this.contentType = 'FallbackType';
+		resolveContentWith(contentType: any) {
+			this.readyToDisplay = false;
+			this.contentType = contentType;
 			this.contentSource = this.contentFallbackSource;
+			this.readyToDisplay = true;	
 		}
 	},
 	components: {
 		VideoType,
 		IframeType,
 		FallbackType,
+		NotFoundType,
 		FontAwesomeIcon
 	}
 })

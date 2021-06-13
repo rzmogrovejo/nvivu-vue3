@@ -25,7 +25,6 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import RawChannel from "@/contracts/RawChannel";
-//import axios from "axios";
 
 library.add(faPlayCircle)
 
@@ -33,19 +32,9 @@ export default defineComponent({
 	name: 'Home',
 	props: {
 		rawChannels: {
-			type: Object as () => Promise<RawChannel[]>,
+			type: Object as () => RawChannel[],
 			required: true
 		}
-	},
-/* 	data() {
-		return {
-			rawChannels: []
-		}
-	},	 */
-/* 	async created() {
-	}, */
-	mounted() {
-		console.log('home');
 	},
 	components: {
 		FontAwesomeIcon

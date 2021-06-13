@@ -33,20 +33,22 @@ import IframeType from "@/components/IframeType.vue";
 import VideoType from "@/components/VideoType.vue";
 import FallbackType from "@/components/FallbackType.vue"
 import NotFoundType from "@/components/NotFoundType.vue";
+import LoadingType from "@/components/LoadingType.vue";
 import RawChannel from '@/contracts/RawChannel';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { defineComponent } from "vue";
 import Channel from "@/models/Channel";
+import _isEmpty from "lodash.isempty";
 
-library.add(faArrowLeft)
+library.add(faArrowLeft);
 
 export default defineComponent({
 	name: 'Player',
 	props: {
 		rawChannels: {
-			type: Object as () => Promise<RawChannel[]>,
+			type: Object as () => RawChannel[],
 			required: true
 		}
 	},
@@ -58,32 +60,43 @@ export default defineComponent({
 			readyToDisplay: false
 		}
 	},
-	async created() {
-		const slug = (this.$route.params.slug as string);
-		await this.validateSlug(slug);
+	watch:{
+		rawChannels() {
+			const slug = this.$route.params.slug as string;
+			this.resolveContent(slug);
+		}
 	},
-	async beforeRouteUpdate(to, from, next) {
-		const slug = (to.params.slug as string);
-		await this.validateSlug(slug);
+	created() {
+		const slug = this.$route.params.slug as string;
+		this.resolveContent(slug);
+	},
+	beforeRouteUpdate(to, from, next) {
+		const slug = to.params.slug as string;
+		this.resolveContent(slug);
 		next();
 	},
 	mounted() {
-		console.log('player');
+		console.log('player mounted');
 	},
 	methods: {
-		async validateSlug(slug: string) {
-			const rawChannel = await (this.rawChannels as any).find((rawChannel: RawChannel) => {
-				return rawChannel.slug === slug && rawChannel.contentEnabled
-			});
-
-			if (!rawChannel) {
-				this.resolveContentWith('NotFoundType');
+		async resolveContent(slug: string) {
+			if (_isEmpty(this.rawChannels)) {
+				this.resolveContentWith(LoadingType.name);
 				return;
 			}
 
-			await this.resolveContent(rawChannel);				
+			const rawChannel = await this.rawChannelFromSlugRoute(slug)
+
+			console.log('rawChannel: ', rawChannel);
+
+			if (!rawChannel) {
+				this.resolveContentWith(NotFoundType.name);
+				return;
+			}
+
+			this.resolveContentWithRawChannel(rawChannel);				
 		},		
-		async resolveContent(rawChannel: RawChannel) {
+		async resolveContentWithRawChannel(rawChannel: RawChannel) {
 			this.readyToDisplay = false;
 			const channel = new Channel(rawChannel);
 			this.contentType = channel.resolveContentType();
@@ -91,11 +104,16 @@ export default defineComponent({
 			this.contentFallbackSource = channel.contentFallbackSource();
 			this.readyToDisplay = true;
 		},
-		resolveContentWith(contentType: any) {
+		resolveContentWith(contentType: string) {
 			this.readyToDisplay = false;
 			this.contentType = contentType;
 			this.contentSource = this.contentFallbackSource;
 			this.readyToDisplay = true;	
+		},
+		rawChannelFromSlugRoute(slug: string) {
+			return this.rawChannels.find((rawChannel: RawChannel) => {	
+				return rawChannel.slug === slug && rawChannel.contentEnabled
+			});
 		}
 	},
 	components: {
@@ -103,6 +121,7 @@ export default defineComponent({
 		IframeType,
 		FallbackType,
 		NotFoundType,
+		LoadingType,
 		FontAwesomeIcon
 	}
 })

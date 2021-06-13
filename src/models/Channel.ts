@@ -1,6 +1,6 @@
-import snakeToCamel from "@/utils/snakeToCamel";
 import axios from "axios";
 import Model from "./Model";
+import _camelCase from 'lodash.camelcase';
 
 export default class Channel extends Model {
 	public name(): string {
@@ -12,7 +12,7 @@ export default class Channel extends Model {
 	}
 
 	public slugInCamel(): string {
-		return snakeToCamel(this.slug());
+		return _camelCase(this.slug());
 	}
 
 	public contentSource(): string {

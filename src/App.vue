@@ -14,7 +14,7 @@ export default defineComponent({
 			rawChannels: []
 		}
 	},
-	async beforeCreate() {
+	async created() {
 		let endpoint = "";
 		
 		if (process.env.NODE_ENV === 'production') {

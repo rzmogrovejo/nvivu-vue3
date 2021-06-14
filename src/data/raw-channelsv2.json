@@ -171,7 +171,7 @@
 		"contentFallbackSource": "https://www.13.cl/en-vivo",
 		"contentType": "iframe",
 		"contentEnabled": true,
-		"contentInHome": false,
+		"contentInHome": true,
 		"countryName": "Chile",
 		"countryIsoCode": "CL"
 	}	

@@ -10,6 +10,16 @@
 		"countryIsoCode": "PE"
 	},
 	{
+		"name": "America TV",
+		"slug": "america-tv",
+		"contentSource": "https://us-b4-p-e-ft6.cdn.mdstrm.com/live-stream-secure/6099b04d9418ac082441dd74/publish/media_1800.m3u8?access_token=xfEw2FHGxA7XREPFX3Zlkm1bAZE65r42p6fOL9mqgo2r5Nm6HXjYbXPWOap5y3aBE0nX29murM1&ote=1623734373043&ot=YOor1hvj6qtIwErlEo68UQ",
+		"contentFallbackSource": "https://tvgo.americatv.com.pe",
+		"contentType": "video",
+		"contentEnabled": true,
+		"countryName": "Perú",
+		"countryIsoCode": "PE"
+	},	
+	{
 		"name": "Panamericana",
 		"slug": "panamericana",
 		"contentSource": "https://www.dailymotion.com/embed/video/x774s7s?autoplay=1",

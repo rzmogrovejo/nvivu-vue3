@@ -6,6 +6,7 @@
 		"contentFallbackSource": "https://www.latina.pe/tvenvivo",
 		"contentType": "video",
 		"contentEnabled": true,
+		"contentInHome": true,
 		"countryName": "Perú",
 		"countryIsoCode": "PE"
 	},
@@ -16,6 +17,7 @@
 		"contentFallbackSource": "https://tvgo.americatv.com.pe",
 		"contentType": "video",
 		"contentEnabled": true,
+		"contentInHome": false,
 		"countryName": "Perú",
 		"countryIsoCode": "PE"
 	},	
@@ -26,6 +28,7 @@
 		"contentFallbackSource": "https://panamericana.pe/tvenvivo",
 		"contentType": "iframe",
 		"contentEnabled": true,
+		"contentInHome": true,
 		"countryName": "Perú",
 		"countryIsoCode": "PE"
 	},
@@ -36,6 +39,7 @@
 		"contentFallbackSource": "https://www.tvperu.gob.pe/play",
 		"contentType": "video",
 		"contentEnabled": false,
+		"contentInHome": true,
 		"countryName": "Perú",
 		"countryIsoCode": "PE"
 	},	
@@ -46,6 +50,7 @@
 		"contentFallbackSource": "https://www.tvperu.gob.pe/play",
 		"contentType": "video",
 		"contentEnabled": false,
+		"contentInHome": true,
 		"countryName": "Perú",
 		"countryIsoCode": "PE"
 	},
@@ -56,6 +61,7 @@
 		"contentFallbackSource": "https://www.canalipe.tv/streaming",
 		"contentType": "video",
 		"contentEnabled": false,
+		"contentInHome": true,
 		"countryName": "Perú",
 		"countryIsoCode": "PE"
 	},
@@ -66,6 +72,7 @@
 		"contentFallbackSource": "https://www.atv.pe/envivo-atv",
 		"contentType": "video",
 		"contentEnabled": false,
+		"contentInHome": true,
 		"countryName": "Perú",
 		"countryIsoCode": "PE"
 	},
@@ -76,6 +83,7 @@
 		"contentFallbackSource": "https://www.atv.pe/envivo-atvmas",
 		"contentType": "video",
 		"contentEnabled": true,
+		"contentInHome": true,
 		"countryName": "Perú",
 		"countryIsoCode": "PE"
 	},	
@@ -86,6 +94,7 @@
 		"contentFallbackSource": "https://willax.tv/en-vivo/",
 		"contentType": "iframe",
 		"contentEnabled": true,
+		"contentInHome": true,
 		"countryName": "Perú",
 		"countryIsoCode": "PE"		
 	},
@@ -96,6 +105,7 @@
 		"contentFallbackSource": "https://exitosanoticias.pe/v1/tvenvivo/",
 		"contentType": "video",
 		"contentEnabled": true,
+		"contentInHome": true,
 		"countryName": "Perú",
 		"countryIsoCode": "PE"
 	},
@@ -106,6 +116,7 @@
 		"contentFallbackSource": "https://radiokaribena.pe/videoskaribenatv/",
 		"contentType": "video",
 		"contentEnabled": true,
+		"contentInHome": true,
 		"countryName": "Perú",
 		"countryIsoCode": "PE"
 	},
@@ -116,6 +127,7 @@
 		"contentFallbackSource": "https://comunicaciones.congreso.gob.pe/tv-congreso/",
 		"contentType": "iframe",
 		"contentEnabled": true,
+		"contentInHome": true,
 		"countryName": "Perú",
 		"countryIsoCode": "PE"
 	},		
@@ -126,6 +138,7 @@
 		"contentFallbackSource": "https://actualidad.rt.com/en_vivo",
 		"contentType": "video",
 		"contentEnabled": true,
+		"contentInHome": true,
 		"countryName": "Latam",
 		"countryIsoCode": "ZZ"		
 	},
@@ -136,6 +149,7 @@
 		"contentFallbackSource": "https://www.dw.com/es/multimedia/tv-en-vivo/s-100837",
 		"contentType": "video",
 		"contentEnabled": true,
+		"contentInHome": true,
 		"countryName": "Latam",
 		"countryIsoCode": "ZZ"
 	},
@@ -146,6 +160,7 @@
 		"contentFallbackSource": "https://noticieros.televisa.com/noticias-vivo-forotv/",
 		"contentType": "video",
 		"contentEnabled": true,
+		"contentInHome": true,
 		"countryName": "Latam",
 		"countryIsoCode": "MX"		
 	},
@@ -156,6 +171,7 @@
 		"contentFallbackSource": "https://www.13.cl/en-vivo",
 		"contentType": "video",
 		"contentEnabled": true,
+		"contentInHome": false,
 		"countryName": "Chile",
 		"countryIsoCode": "CL"		
 	}	

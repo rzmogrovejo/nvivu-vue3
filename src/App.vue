@@ -26,7 +26,7 @@ export default defineComponent({
 		this.rawChannels = await 
 			axios(endpoint)
 				.then((response) => response.data
-					.filter((channel: RawChannel) => channel.contentEnabled));
+					.filter((channel: RawChannel) => channel.contentEnabled && channel.contentInHome));
 	},
 	mounted() {
 		console.log('app');

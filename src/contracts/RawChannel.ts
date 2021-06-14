@@ -5,6 +5,7 @@ export default interface RawChannel {
 	"contentFallbackSource": string,
 	"contentType": string,
 	"contentEnabled": boolean,
+	"contentInHome": boolean,
 	"countryName": string,
 	"countryIsoCode": string
 }

@@ -92,7 +92,7 @@ export default class Channel extends Model {
 	private async tele13() {
 		const token = await axios
 			.get('https://us-central1-canal-13-stream-api.cloudfunctions.net/media/token?id=5f51a916c21eec083ab337a8&type=live&tid=25ea71d3411966ee7387f90fd4c4410b921b40cf&uid=bffd75654f90d31f382df4e3f7dbe1f3693d05ab')
-			.then(response => response.data.token);
+			.then(response => response.data.data.token);
 		
 		return this.contentSource() + token;
 	}

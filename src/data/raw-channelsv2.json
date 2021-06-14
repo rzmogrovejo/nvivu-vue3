@@ -167,7 +167,7 @@
 	{
 		"name": "Tele 13",
 		"slug": "tele-13",
-		"contentSource": "https://mdstrm.com/live-stream/5f51a916c21eec083ab337a8?autoplay=true&access_token=",
+		"contentSource": "https://mdstrm.com/live-stream/5f51a916c21eec083ab337a8?jsapi=true&autoplay=true&access_token=",
 		"contentFallbackSource": "https://www.13.cl/en-vivo",
 		"contentType": "iframe",
 		"contentEnabled": true,

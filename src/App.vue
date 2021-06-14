@@ -15,21 +15,29 @@ export default defineComponent({
 		}
 	},
 	async created() {
-		let endpoint = "";
-		
 		if (process.env.NODE_ENV === 'production') {
-			endpoint = "https://raw.githubusercontent.com/rzmogrovejo/nvivu/main/public/raw-channelsv2.json"
+			await this.resolveForProduction();
 		} else {
-			endpoint = "https://raw.githubusercontent.com/rzmogrovejo/nvivu/main/src/data/raw-channelsv2.json"
+			this.resolveForLocal();
 		}
-
-		this.rawChannels = await 
-			axios(endpoint)
-				.then((response) => response.data
-					.filter((channel: RawChannel) => channel.contentEnabled));
 	},
 	mounted() {
 		console.log('app');
+	},
+	methods: {
+		resolveForLocal() {
+			const rawChannels = require('@/data/raw-channelsv2.json');
+			this.rawChannels = this.filterChannels(rawChannels);
+		},
+		async resolveForProduction() {
+			let endpoint = "https://raw.githubusercontent.com/rzmogrovejo/nvivu/main/src/data/raw-channelsv2.json";
+
+			this.rawChannels = await axios(endpoint)
+				.then((response) => this.filterChannels(response.data));			
+		},
+		filterChannels(rawChannels: []) {
+			return rawChannels.filter((channel: RawChannel) => channel.contentEnabled);
+		}
 	}
 })
 </script>

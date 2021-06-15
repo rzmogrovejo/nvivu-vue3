@@ -3,7 +3,8 @@ export default function countryMap(code: string) {
 }
 
 const mapping = {
-	'PE': 'Perú',
-	'MX': 'México',
-	'ZZ': 'Internacional'
+	'PE': '🇵🇪',
+	'CL': '🇨🇱',
+	'MX': '🇲🇽',
+	'ZZ': '🌎'
 }

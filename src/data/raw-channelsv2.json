@@ -38,7 +38,7 @@
 		"contentSource": "https://cdnh4.iblups.com/hls/R9WtilpKKB.m3u8",
 		"contentFallbackSource": "https://www.tvperu.gob.pe/play",
 		"contentType": "video",
-		"contentEnabled": false,
+		"contentEnabled": true,
 		"contentInHome": true,
 		"countryName": "Perú",
 		"countryIsoCode": "PE"
@@ -49,7 +49,7 @@
 		"contentSource": "https://cdnh4.iblups.com/hls/RMuwrdk7M9.m3u8",
 		"contentFallbackSource": "https://www.tvperu.gob.pe/play",
 		"contentType": "video",
-		"contentEnabled": false,
+		"contentEnabled": true,
 		"contentInHome": true,
 		"countryName": "Perú",
 		"countryIsoCode": "PE"
@@ -60,7 +60,7 @@
 		"contentSource": "https://cdnh4.iblups.com/hls/OVJNKV4pSr.m3u8",
 		"contentFallbackSource": "https://www.canalipe.tv/streaming",
 		"contentType": "video",
-		"contentEnabled": false,
+		"contentEnabled": true,
 		"contentInHome": true,
 		"countryName": "Perú",
 		"countryIsoCode": "PE"

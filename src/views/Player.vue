@@ -79,15 +79,13 @@ export default defineComponent({
 		console.log('player mounted');
 	},
 	methods: {
-		async resolveContent(slug: string) {
+		resolveContent(slug: string) {
 			if (_isEmpty(this.rawChannels)) {
 				this.resolveContentWith(LoadingType.name);
 				return;
 			}
 
-			const rawChannel = await this.rawChannelFromSlugRoute(slug)
-
-			console.log('rawChannel: ', rawChannel);
+			const rawChannel = this.rawChannelFromSlugRoute(slug);
 
 			if (!rawChannel) {
 				this.resolveContentWith(NotFoundType.name);

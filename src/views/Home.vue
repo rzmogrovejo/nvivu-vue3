@@ -6,13 +6,25 @@
 			</router-link>
 		</h1>
 		<div>
-			<p class="pb-6 font-light">Disfruta de tus canales favoritos vía streaming, selecciona uno:</p>
+			<p class="pb-6 font-light">
+				Disfruta de tus canales favoritos vía streaming, selecciona uno:
+			</p>
 		</div>
 		<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-			<div class="font-light no-underline hover:underline text-blue-700" v-for="channel in rawChannelsFiltered" :key="channel">
-				<router-link :to="{ name: 'Player', params: { slug: channel.slug } }">
-					{{ channel.name }}
-				</router-link>
+			<div v-for="channel in rawChannelsFiltered" 
+				:key="channel">
+				<span class="mr-3">
+					{{ countryFlag(channel.countryIsoCode) }}
+				</span>
+				<span class="font-light no-underline hover:underline text-blue-700">
+					<router-link 
+						:to="{ 
+							name: 'Player', 
+							params: { slug: channel.slug } 
+						}">
+						{{ channel.name }}
+					</router-link>
+				</span>
 			</div>
 		</div>
 	</div>
@@ -25,6 +37,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import RawChannel from "@/contracts/RawChannel";
+import countryMap from '@/utils/countryMap';
 //import rawChannels from "@/data/rawChannels";
 
 library.add(faPlayCircle)
@@ -40,6 +53,11 @@ export default defineComponent({
 	computed: {
 		rawChannelsFiltered(): RawChannel[] {
 			return this.rawChannels.filter((channel: RawChannel) => channel.contentInHome);
+		}
+	},
+	methods: {
+		countryFlag(countryIsoCode: string): string {
+			return countryMap(countryIsoCode);
 		}
 	},
 	components: {

@@ -22,7 +22,11 @@
 			<font-awesome-icon icon="arrow-left" />
 		</router-link>
 		<div v-if="readyToDisplay">
-			<component :is="contentType" :source="contentSource" @should-fallback="resolveContentWith"></component>
+			<component 
+				:is="contentType" 
+				:source="contentSource" 
+				@should-fallback="resolveContentWith">
+			</component>
 		</div>
 	</div>	
 </template>

@@ -24,7 +24,14 @@ export default class Channels {
 		} else {
 			return callback(this.resolveForLocal());
 		}
-	}	
+	}
+
+	static async getOneBySlug(slug: string): Promise<RawChannel> {
+		const channels = await this.getAll();
+		return channels.find((channel: RawChannel) => {	
+			return channel.slug === slug && channel.contentEnabled
+		})!;
+	}
 
 	static resolveForLocal(): RawChannel[] {
 		const rawChannels = require('@/data/raw-channelsv2');

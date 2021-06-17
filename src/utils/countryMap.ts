@@ -1,4 +1,4 @@
-export default function countryMap(code: string) {
+const countryMap = (code: string): string => {
 	return (mapping as any)[code];
 }
 
@@ -8,3 +8,5 @@ const mapping = {
 	'MX': '🇲🇽',
 	'ZZ': '🌎'
 }
+
+export default countryMap;

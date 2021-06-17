@@ -11,7 +11,7 @@
 			</p>
 		</div>
 		<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-			<div v-for="channel in rawChannelsFiltered" 
+			<div v-for="channel in channelsInHome" 
 				:key="channel">
 				<span class="mr-3">
 					{{ countryFlag(channel.countryIsoCode) }}
@@ -38,23 +38,24 @@ import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import RawChannel from "@/contracts/RawChannel";
 import countryMap from '@/utils/countryMap';
-//import rawChannels from "@/data/rawChannels";
+import Channels from "@/repo/Channels";
 
 library.add(faPlayCircle)
 
 export default defineComponent({
 	name: 'Home',
-	props: {
-		rawChannels: {
-			type: Object as () => RawChannel[],
-			required: true
+	data() {
+		return {
+			channelsInHome: Array()
 		}
 	},
-	computed: {
-		rawChannelsFiltered(): RawChannel[] {
-			return this.rawChannels.filter((channel: RawChannel) => channel.contentInHome);
-		}
-	},
+	async created() {
+		this.channelsInHome = await Channels.getAll((channels: RawChannel[]) => {
+			return channels.filter((channel: RawChannel) => 
+				channel.contentEnabled && channel.contentInHome
+			);
+		});
+	},	
 	methods: {
 		countryFlag(countryIsoCode: string): string {
 			return countryMap(countryIsoCode);

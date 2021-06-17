@@ -44,18 +44,12 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { defineComponent } from "vue";
 import Channel from "@/models/Channel";
-import _isEmpty from "lodash.isempty";
+import Channels from "@/repo/Channels";
 
 library.add(faArrowLeft);
 
 export default defineComponent({
 	name: 'Player',
-	props: {
-		rawChannels: {
-			type: Object as () => RawChannel[],
-			required: true
-		}
-	},
 	data() {
 		return {
 			contentType: '',
@@ -64,32 +58,21 @@ export default defineComponent({
 			readyToDisplay: false
 		}
 	},
-	watch:{
-		rawChannels() {
-			const slug = this.$route.params.slug as string;
-			this.resolveContent(slug);
-		}
-	},
-	created() {
+	async created() {
 		const slug = this.$route.params.slug as string;
-		this.resolveContent(slug);
+		await this.resolveContent(slug);
 	},
-	beforeRouteUpdate(to, from, next) {
+	async beforeRouteUpdate(to, from, next) {
 		const slug = to.params.slug as string;
-		this.resolveContent(slug);
+		await this.resolveContent(slug);
 		next();
 	},
 	mounted() {
 		console.log('player mounted');
 	},
 	methods: {
-		resolveContent(slug: string) {
-			if (_isEmpty(this.rawChannels)) {
-				this.resolveContentWith(LoadingType.name);
-				return;
-			}
-
-			const rawChannel = this.rawChannelFromSlugRoute(slug);
+		async resolveContent(slug: string) {
+			const rawChannel = await Channels.getOneBySlug(slug);
 
 			if (!rawChannel) {
 				this.resolveContentWith(NotFoundType.name);
@@ -112,11 +95,6 @@ export default defineComponent({
 			this.contentSource = this.contentFallbackSource;
 			this.readyToDisplay = true;	
 		},
-		rawChannelFromSlugRoute(slug: string) {
-			return this.rawChannels.find((rawChannel: RawChannel) => {	
-				return rawChannel.slug === slug && rawChannel.contentEnabled
-			});
-		}
 	},
 	components: {
 		VideoType,

@@ -41,7 +41,6 @@ const responseInterceptor = (response: AxiosResponse) => {
     switch(response.status) {
         case 200: 
             // yay!
-			console.log('todo good');
             break;
         // any other cases
         default:

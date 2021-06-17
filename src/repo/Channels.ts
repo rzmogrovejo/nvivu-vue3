@@ -1,6 +1,5 @@
 import RawChannel from "@/contracts/RawChannel";
-import axios from "axios";
-import { cacheAdapterEnhancer } from "axios-extensions";
+import httpClient from "@/utils/httpClient";
 
 export default class Channels {
 
@@ -40,13 +39,8 @@ export default class Channels {
 	static async resolveForProduction(): Promise<RawChannel[]> {
 		const endpoint = "https://raw.githubusercontent.com/rzmogrovejo/nvivu/main/src/data/raw-channelsv2.json";
 
-		const http = axios.create({
-			baseURL: '/',
-			//headers: { 'Cache-Control': 'no-cache' },
-			// cache will be enabled by default
-			adapter: cacheAdapterEnhancer(axios.defaults.adapter!)
-		});
-
-		return await http(endpoint).then((response) => response.data);
+		return await httpClient(endpoint, {
+			cache: true
+		}).then((response) => response.data);
 	}
 }

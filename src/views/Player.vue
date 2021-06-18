@@ -35,6 +35,7 @@
 // @ is an alias to /src
 import IframeType from "@/components/IframeType.vue";
 import VideoType from "@/components/VideoType.vue";
+import YoutubeType from "@/components/YoutubeType.vue";
 import FallbackType from "@/components/FallbackType.vue"
 import NotFoundType from "@/components/NotFoundType.vue";
 import LoadingType from "@/components/LoadingType.vue";
@@ -99,6 +100,7 @@ export default defineComponent({
 	components: {
 		VideoType,
 		IframeType,
+		YoutubeType,
 		FallbackType,
 		NotFoundType,
 		LoadingType,

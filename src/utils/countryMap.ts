@@ -3,6 +3,7 @@ const countryMap = (code: string): string => {
 }
 
 const mapping = {
+	'AR': '🇦🇷',
 	'PE': '🇵🇪',
 	'CL': '🇨🇱',
 	'MX': '🇲🇽',

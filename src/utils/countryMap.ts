@@ -8,6 +8,7 @@ const mapping = {
 	'CL': '🇨🇱',
 	'MX': '🇲🇽',
 	'ZZ': '🌎'
+	
 }
 
 export default countryMap;

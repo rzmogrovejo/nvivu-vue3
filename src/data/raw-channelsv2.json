@@ -123,9 +123,9 @@
 	{
 		"name": "Congreso Perú",
 		"slug": "congreso-peru",
-		"contentSource": "https://www.youtube.com/embed/UgDb4nMF_fg?autoplay=1",
+		"contentSource": "https://www.youtube-nocookie.com/embed/UgDb4nMF_fg",
 		"contentFallbackSource": "https://comunicaciones.congreso.gob.pe/tv-congreso/",
-		"contentType": "iframe",
+		"contentType": "youtube",
 		"contentEnabled": true,
 		"contentInHome": true,
 		"countryName": "Perú",
@@ -174,5 +174,16 @@
 		"contentInHome": true,
 		"countryName": "Chile",
 		"countryIsoCode": "CL"
+	},
+	{
+		"name": "TV Pública",
+		"slug": "tv-publica",
+		"contentSource": "https://www.youtube-nocookie.com/embed/5fEdfSoEw8s",
+		"contentFallbackSource": "https://www.youtube.com/watch?v=5fEdfSoEw8s",
+		"contentType": "youtube",
+		"contentEnabled": true,
+		"contentInHome": true,
+		"countryName": "Argentina",
+		"countryIsoCode": "AR"
 	}	
 ]

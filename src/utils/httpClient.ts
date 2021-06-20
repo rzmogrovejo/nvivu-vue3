@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { cacheAdapterEnhancer } from "axios-extensions";
+import { cacheAdapterEnhancer, throttleAdapterEnhancer } from "axios-extensions";
 
 const cacheConfig = {
 	enabledByDefault: false, 
@@ -10,7 +10,7 @@ const httpClient = axios.create({
 /* 	headers: {
 		'Cache-Control': 'no-cache'
 	}, */
-	adapter: cacheAdapterEnhancer(axios.defaults.adapter!, cacheConfig)
+	adapter: throttleAdapterEnhancer(cacheAdapterEnhancer(axios.defaults.adapter!, cacheConfig))
 })
 
 // interceptor to catch errors

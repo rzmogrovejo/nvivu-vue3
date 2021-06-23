@@ -8,7 +8,7 @@
 			left: 50%;
 			transform: translate(-50%, -50%);
 			text-align: center;" class="font-light">
-		El contenido se transmite en la <a class="font-light no-underline hover:underline text-blue-600" :href="source" target="_blank">página del canal</a>. Te redirigimos en {{ countdown }}.
+		Te llevaremos a la página del canal en {{ countdown }}. En caso no cargue, da clic <a class="font-light no-underline hover:underline text-blue-600" :href="source" target="_blank">aquí</a>.
 	</div>	
 </template>
 
@@ -26,7 +26,7 @@ export default defineComponent({
 	},
 	data() {
 		return {
-			countdown: 7
+			countdown: 2
 		}
 	},
 	mounted() {

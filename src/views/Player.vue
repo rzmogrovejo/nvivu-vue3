@@ -39,6 +39,7 @@ import YoutubeType from "@/components/YoutubeType.vue";
 import FallbackType from "@/components/FallbackType.vue"
 import NotFoundType from "@/components/NotFoundType.vue";
 import LoadingType from "@/components/LoadingType.vue";
+import BlankType from "@/components/BlankType.vue";
 import RawChannel from '@/contracts/RawChannel';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -104,6 +105,7 @@ export default defineComponent({
 		FallbackType,
 		NotFoundType,
 		LoadingType,
+		BlankType,
 		FontAwesomeIcon
 	}
 })

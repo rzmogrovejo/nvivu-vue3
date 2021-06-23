@@ -15,7 +15,7 @@
 		"slug": "america-tv",
 		"contentSource": "https://tvgo.americatv.com.pe",
 		"contentFallbackSource": "https://tvgo.americatv.com.pe",
-		"contentType": "iframe",
+		"contentType": "blank",
 		"contentEnabled": true,
 		"contentInHome": true,
 		"countryName": "Perú",

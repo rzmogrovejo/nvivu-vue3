@@ -19,7 +19,7 @@ export default class Channels {
 			};
 		}
 
-		if (process.env.NODE_ENV === 'production') {
+		if (process.env.NODE_ENV !== 'production') {
 			return callback(await this.resolveForProduction());
 		} else {
 			return callback(this.resolveForLocal());
